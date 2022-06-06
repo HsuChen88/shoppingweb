@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>登入會員</title>
+		<title>加入會員</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -41,7 +41,7 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li class="current"><a href="left-sidebar.html">註冊</a></li>
+									<li class="current"><a href="register.html">註冊</a></li>
 									<li><a href="login.html">登入</a></li>
 									<li><a href="no-sidebar.html">No Sidebar</a></li>
 								</ul>
@@ -56,15 +56,15 @@
 						<div class="app">
                             <h1>加入會員</h1>
                             <h1>使用者名稱</h1>
-                            <input type="text" id="content" name="name"/>
+                            <input type="text" id="userdata" name="name" placeholder="user"/>
                             <h1>手機號碼</h1>
-                            <input type="text" id="content" name="phone"/>
+                            <input type="text" id="userdata" name="phone"/>
                             <h1>輸入密碼</h1>
-                            <input type="text" id="content" name="password"/>
+                            <input type="text" id="userdata" name="password"/>
                             <h1>再次輸入密碼</h1>
-                            <input type="text" id="content" name="confirmPassword"/>
+                            <input type="text" id="userdata" name="confirmPassword"/>
 
-                            <button class="add" id="addedBtn">註冊</button>
+							<input type="submit" class="add" id="addedBtn" value="註冊">
                             <p>已經註冊過了嗎<a href="login.html">登入</a></p>
                           </div>
 					</div>
@@ -161,5 +161,11 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<script language="javascript">
+				const addedBtn = document.getElementById('addedBtn')
+				addedBtn.addEventListener('click', function () {
+					location.href='adduser.php';
+				});
+			</script>
 	</body>
 </html>
