@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://kit.fontawesome.com/be03ab0af6.js" crossorigin="anonymous"></script>
 	</head>
 	<body class="is-preload homepage">
 		<div id="page-wrapper">
@@ -19,17 +20,14 @@
 					<header id="header" class="container">
 
 						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="index.html">Name</a></h1>
-								<span>by Dino & Shawn</span>
-							</div>
+							<a href="index.html">
+								<div id="logo">
+									<h1>Shawning Shop</h1>
+								</div>
+							</a>
+							<div>by Dino & Shawn</div>
 
-							<div id="search" >
-								<form action="search.php" method="POST">
-									<input type="text" placeholder="search for commodity">
-									<input type="submit" value="搜尋">
-								</form>
-							</div>
+							
 
 						<!-- Nav -->
 							<nav id="nav">
@@ -57,7 +55,13 @@
 									<li><a href="no-sidebar.html">購物車</a></li>
 								</ul>
 							</nav>
-
+							
+							<div id="search" >
+								<form action="search.php" method="POST">
+									<input type="text" placeholder="Search..">
+									<button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+								</form>
+							</div>
 					</header>
 				</div>
 
