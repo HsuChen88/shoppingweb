@@ -53,15 +53,15 @@
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">
-						<div class="app">
+						<form class="app" method="POST" action="login.php">
                             <h5>登入</h5>
                             <h1>手機號碼</h1>
                             <input type="text" id="content" name="phone"/>
                             <h1>輸入密碼</h1>
                             <input type="text" id="content" name="password"/>
-                            <button class="add" id="addedBtn">登入</button>
+                            <button class="add" id="loginBtn">登入</button>
                             <p>初來乍到?<a href="register.html">加入會員</a></p>
-                          </div>
+                          </form>
 					</div>
 				</div>
 
@@ -156,5 +156,11 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<script language="javascript">
+				const loginBtn = document.getElementById('loginBtn')
+				loginBtn.addEventListener('click', function () {
+					location.href='login.php';
+				});
+			</script>
 	</body>
 </html>

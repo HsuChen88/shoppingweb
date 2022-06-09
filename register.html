@@ -43,7 +43,7 @@
 									</li>
 									<li class="current"><a href="register.html">註冊</a></li>
 									<li><a href="login.html">登入</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="no-sidebar.html">購物車</a></li>
 								</ul>
 							</nav>
 
@@ -53,7 +53,7 @@
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">
-						<div class="app">
+						<form class="app" method="POST" action="adduser.php">
                             <h1>加入會員</h1>
                             <h1>使用者名稱</h1>
                             <input type="text" id="userdata" name="name" placeholder="user"/>
@@ -64,9 +64,9 @@
                             <h1>再次輸入密碼</h1>
                             <input type="text" id="userdata" name="confirmPassword"/>
 
-							<input type="submit" class="add" id="addedBtn" value="註冊">
+							<input type="submit" class="add" id="addBtn" value="註冊">
                             <p>已經註冊過了嗎<a href="login.html">登入</a></p>
-                          </div>
+                          </form>
 					</div>
 				</div>
 
@@ -162,8 +162,8 @@
 			<script src="assets/js/main.js"></script>
 
 			<script language="javascript">
-				const addedBtn = document.getElementById('addedBtn')
-				addedBtn.addEventListener('click', function () {
+				const addBtn = document.getElementById('addBtn')
+				addBtn.addEventListener('click', function () {
 					location.href='adduser.php';
 				});
 			</script>
