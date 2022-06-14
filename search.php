@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-echo "searching...";
-?>
 
 <html>
 
@@ -10,59 +7,77 @@ echo "searching...";
 	    <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-
-<body>
-<div id="features-wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Put something here</h2>
-												<p>Maybe here as well I think</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>An interesting title</h2>
-												<p>This is also an interesting subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Oh, and finally ...</h2>
-												<p>Here's another intriguing subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
+	<body>
+		<div class="container" id="searchApp">
+			<br />
+			<h3 align="center">Vue.js Live Data Search with PHP & Mysql</h3>
+			<br />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-9">
+							<h3 class="panel-title">Sample Data</h3>
+						</div>
+						<div class="col-md-3" align="right">
+							<input type="text" class="form-control input-sm" placeholder="Search Data" v-model="query" @keyup="fetchData()" />
 						</div>
 					</div>
 				</div>
-</body>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped">
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+							</tr>
+							<tr v-for="row in allData">
+								<td>{{ row.first_name }}</td>
+								<td>{{ row.last_name }}</td>
+							</tr>
+							<tr v-if="nodata">
+								<td colspan="2" align="center">No Data Found</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
+
+<script>
+
+var application = new Vue({
+	el:'#searchApp',
+	data:{
+		allData:'',
+		query:'',
+		nodata:false
+	},
+	methods: {
+		fetchData:function(){
+			axios.post('action.php', {
+				query:this.query
+			}).then(function(response){
+				if(response.data.length > 0)
+				{
+					application.allData = response.data;
+					application.nodata = false;
+				}
+				else
+				{
+					application.allData = '';
+					application.nodata = true;
+				}
+			});
+		}
+	},
+	created:function(){
+		this.fetchData();
+	}
+});
+
+</script>
