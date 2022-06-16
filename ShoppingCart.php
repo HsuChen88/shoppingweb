@@ -70,6 +70,7 @@
 								</tr>
 							
 							<?php
+							$sum = 0;
 							$user_id = 1;	//暫時用我自己
 							$pdo = new PDO('sqlite:alldata.db');
 							$query = "SELECT * FROM Cart WHERE user_id==$user_id";
@@ -96,6 +97,7 @@
 									$product_name= $productData[0][1];
 									$price= $productData[0][4];
 	
+									$sum += $price * $amount;
 									echo "
 									<tr>
 										<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
@@ -108,7 +110,16 @@
 							}
 							
 							?>
+							<tr>
+										<td></td>
+										<td></td>
+										<td>總金額:</td>
+										<td><?php echo $sum; ?></td>
+										<td><button id="checkoutBtn">結帳</button></td>
+									</tr>
 							</table>
+
+							
 						</div>
 					</div>
 				</div>
@@ -196,7 +207,12 @@
 			</div>
 
 		<!-- Scripts -->
-
+			<script language="javascript">
+				const checkoutBtn = document.getElementById('checkoutBtn')
+				checkoutBtn.addEventListener('click', function () {
+					location.href='checkout.php';
+				});
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
