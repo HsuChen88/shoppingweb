@@ -1,5 +1,15 @@
 <!DOCTYPE HTML>
-
+<?php
+	session_start();
+	// echo $_COOKIE["user_id_cookie"];
+	$pdo = new PDO('sqlite:alldata.db');
+    $query = "SELECT Name FROM UserTable WHERE Phone==";
+    $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
+    $sth = $pdo->query($query);
+    $sth->setFetchMode(PDO::FETCH_NUM);
+    $data = $sth->fetchAll();
+	$member = $data[0][0];
+?>
 <html>
 	<head>
 		<title>楊東翰</title>
@@ -54,7 +64,7 @@
 								<v-icon class="icon">mdi-account-plus</v-icon>註冊
 							</a>
 							<a href="/login.html">
-								<v-icon class="icon">mdi-account</v-icon>登入
+								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
 							</a>
 						</div>
 					</v-col>

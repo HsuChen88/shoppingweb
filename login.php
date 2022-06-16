@@ -15,9 +15,11 @@
     // 檢查密碼
     $checkPwd = checkUser($password, $rowPassword);       // arg2:大寫為資料庫row名稱
     if ($checkPwd == TRUE) {
-        header("Location:index.html");
         session_start();
-        $_SESSION['userName'] = $phone;
+        $_SESSION['user_id'] = $phone;
+        $cookie_value = $_SESSION['user_id'];
+        setcookie("user_id_cookie", $cookie_value, time() + (86400 * 7), "/");
+        header("Location:index.php");
     }
     else {
         echo '<script language="javascript">';
@@ -34,7 +36,6 @@
         $sth = $pdo->query($query);
         $sth->setFetchMode(PDO::FETCH_NUM);
         $result = $sth->fetchAll();
-        // var_dump($result);
         
         if ($result == False) {
             return FALSE;
