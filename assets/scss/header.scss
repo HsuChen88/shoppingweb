@@ -21,3 +21,11 @@ $fontcolor2: white;
     font-size: large;
     color: white;
 }
+
+#search{
+    font-size: 15px;
+    padding: 15px;
+    background-color: white;
+    border:2px $fontcolor1 groove;
+    border-radius: 3px;
+  }

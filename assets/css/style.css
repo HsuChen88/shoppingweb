@@ -31,12 +31,6 @@ html, body {
   margin-top: 60px;
 }
 
-#search {
-  background-color: white;
-  border: 2px #8f9da7 groove;
-  border-radius: 3px;
-}
-
 .layout-input {
   border: 2px #8f9da7 groove;
   border-radius: 3px;

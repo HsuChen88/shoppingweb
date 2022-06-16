@@ -26,20 +26,23 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12">
-						<input type="text" v-model="input" placeholder="Search.." id="search">
+						<form action="search.php" methods="POST">
+							<input type="text" placeholder="Search.." id="search"/>
+							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
+						</form>
 						<div>
-						<v-chip-group
-						active-class="primary--text"
-						column
-						>
-							<v-chip class="bg-white"
-							v-for="tag in tags"
-							:key="tag"
+							<v-chip-group
+							active-class="primary--text"
+							column
 							>
-							{{ tag }}
-							</v-chip>
-						</v-chip-group>
-						{{input}}
+								<v-chip class="bg-white"
+								v-for="tag in tags"
+								:key="tag"
+								>
+								{{ tag }}
+								</v-chip>
+							</v-chip-group>
+							{{input}}
 						</div>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
