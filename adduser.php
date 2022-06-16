@@ -13,25 +13,24 @@
     preg_match($pwdLeastPattern, $password, $pwdLeastMatches);
     preg_match($pwdSamePattern, $password, $pwdSameMatches);
     
+    // 確認電話號碼有無錯誤
+    if ($phoneMatches == FALSE) {
+        echo '<script language="javascript">';
+        echo "alert(\"請輸入正確的電話號碼\");";
+        echo "location.href='register.html';";
+        echo "</script>";
+    }
     // 確認密碼長度超過8個字
-    if ($pwdLeastMatches == FALSE) {
+    else if ($pwdLeastMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"輸入的密碼未達8個字\\n請再輸入一次\");";
         echo "location.href='register.html';";
         echo "</script>";
     }
-
     // 確認兩次密碼相同
-    if ($pwdSameMatches == FALSE) {
+    else if ($pwdSameMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"兩次輸入的密碼不相同\\n請再輸入一次\");";
-        echo "location.href='register.html';";
-        echo "</script>";
-    }
-    // 確認電話號碼有無錯誤
-    else if ($phoneMatches == FALSE) {
-        echo '<script language="javascript">';
-        echo "alert(\"請輸入正確的電話號碼\");";
         echo "location.href='register.html';";
         echo "</script>";
     }
