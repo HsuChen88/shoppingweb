@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php
 	session_start();
+
 	// echo $_COOKIE["user_id_cookie"];
 	$pdo = new PDO('sqlite:alldata.db');
     $query = "SELECT Name FROM UserTable WHERE Phone==";
@@ -9,6 +10,8 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$member = $data[0][0];
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.html";
+	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.html";
 ?>
 <html>
 	<head>
@@ -60,7 +63,7 @@
 							<a href="/ShoppingCart.php">
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
-							<a href="/register.html">
+							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href="/login.html">
