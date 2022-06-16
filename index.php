@@ -87,8 +87,17 @@
 			</div>
 
 			<div id="footer">
-				contact us:
-				<input type="text" placeholder="tell us.." class="layout-input">
+				<v-btn
+					v-for="icon in icons"
+					:key="icon"
+					class="mx-5 black--text"
+					icon
+					>
+					<v-icon size="40px">
+						{{ icon }}
+					</v-icon>
+				</v-btn>
+
 			</div>
 			<div id="bottom">
 				This Website is made by Shawn & Dino in 2022 June.
@@ -141,7 +150,13 @@ new Vue({
 			'Shopping',
 			'Art',
 			'Tech'
-		]
+		],
+		icons: [
+			'mdi-facebook',
+			'mdi-twitter',
+			'mdi-linkedin',
+			'mdi-instagram',
+      	],
       }
     },
 	methods: {
