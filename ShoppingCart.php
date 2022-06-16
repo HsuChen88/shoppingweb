@@ -10,37 +10,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-	<?php
-	function addToCart(){
-		$user_id = 1;	//暫時用我自己
-
-		$pdo = new PDO('sqlite:alldata.db');
-		$query = "SELECT id FROM Products WHERE id==1";
-		$sth = $pdo->query($query);
-		$sth->setFetchMode(PDO::FETCH_NUM);
-		$productData = $sth->fetchAll();
-
-		$product_id = $productData[0][0];
-		
-		$pdo = new PDO('sqlite:alldata.db');
-		$query = "SELECT amount FROM Cart WHERE product_id==$product_id";
-		$sth = $pdo->query($query);
-		$sth->setFetchMode(PDO::FETCH_NUM);
-		$getCartData = $sth->fetchAll();
-		$amount = $getCartData[0][0];
-		if ($amount > 0) {
-			$amount += 1;
-			$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE product_id==$product_id");
-			$sth->execute();
-		}
-		else {
-			$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$user_id','$product_id',1)");
-			$sth->execute();
-		}
-		echo "product added.";
-	}
-	?>
-	
 	</head>
 	<body class="is-preload no-sidebar">
 		<div id="page-wrapper">
@@ -76,9 +45,9 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li><a href="register.html">註冊</a></li>
-									<li><a href="login.html">登入</a></li>
-									<li class="current"><a href="ShoppingCart.html">購物車</a></li>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
 								</ul>
 							</nav>
 
@@ -91,15 +60,56 @@
 						<div id="content">
 
 							<!-- Content -->
-							<button id="getproductBtn">加入購物車</button>
-							<script language="javascript">
-								const loginBtn = document.getElementById('getproductBtn')
-								loginBtn.addEventListener('click', function () {
-									var addCart = "<?php addToCart(); ?>"
-									console.log(addCart);
-								});
-							</script>
-							
+							<ul style="list-style-type:none;">
+								<li>
+									<table>
+										<td>圖片</td>
+										<td>商品名稱</td>
+										<td>單價</td>
+										<td>數量</td>
+										<td>操作</td>
+									</table>
+								</li>
+							<?php
+							$user_id = 1;	//暫時用我自己
+							$pdo = new PDO('sqlite:alldata.db');
+							$query = "SELECT * FROM Cart WHERE user_id==$user_id";
+							$sth = $pdo->query($query);
+							$sth->setFetchMode(PDO::FETCH_NUM);
+							$getCartData = $sth->fetchAll();
+
+							if (isset($getCartData[0]) == FALSE) {
+								echo "<p>購物車內空空如也!<br>";
+								echo "先給我去逛逛!</p>";
+							}
+							else {
+								$product_id = $getCartData[0][2];
+								$amount = $getCartData[0][3];
+							}
+
+							$pdo = new PDO('sqlite:alldata.db');
+							$query = "SELECT * FROM Products WHERE id==$product_id";
+							$sth = $pdo->query($query);
+							$sth->setFetchMode(PDO::FETCH_NUM);
+							$productData = $sth->fetchAll();
+
+							// // $picture_ref = $productData[5];
+							$picture_ref = "123456789";
+							$product_name= $productData[0][1];
+							$price= $productData[0][4];
+
+							echo "<ul style=\"list-style-type:none;\">
+								<li>
+									<table>
+										<td>$picture_ref</td>
+										<td>$product_name</td>
+										<td>$price</td>
+										<td>$amount</td>
+										<td>刪除</td>
+									</table>
+								</li>"
+							?>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -188,7 +198,7 @@
 
 		<!-- Scripts -->
 
-			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.min.js"></>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
