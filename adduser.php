@@ -7,12 +7,22 @@
     if ($userName == "") $userName = "user";
     
     $phonePattern = "/09[0-9]{8}$/";
-    $passwordPattern = "/(?:"."$confirmPassword".")$/";
+    $pwdLeastPattern = "/.{8}/";
+    $pwdSamePattern = "/(?:"."$confirmPassword".")$/";
     preg_match($phonePattern, $phone, $phoneMatches);
-    preg_match($passwordPattern, $password, $passwordMatches);
+    preg_match($pwdLeastPattern, $password, $pwdLeastMatches);
+    preg_match($pwdSamePattern, $password, $pwdSameMatches);
     
+    // 確認密碼長度超過8個字
+    if ($pwdLeastMatches == FALSE) {
+        echo '<script language="javascript">';
+        echo "alert(\"輸入的密碼未達8個字\\n請再輸入一次\");";
+        echo "location.href='register.html';";
+        echo "</script>";
+    }
+
     // 確認兩次密碼相同
-    if ($passwordMatches == FALSE) {
+    if ($pwdSameMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"兩次輸入的密碼不相同\\n請再輸入一次\");";
         echo "location.href='register.html';";
