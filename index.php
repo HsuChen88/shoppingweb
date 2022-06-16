@@ -61,7 +61,7 @@
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href="/register.html">
-								<v-icon class="icon">mdi-account-plus</v-icon>註冊
+								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href="/login.html">
 								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
