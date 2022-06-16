@@ -36,7 +36,7 @@
     }
     // 無誤 創建新用戶
     else {
-        $dbName = 'sqlite:user.db';
+        $dbName = 'sqlite:alldata.db';
         $pdo = new PDO($dbName);
         $query = "SELECT Phone FROM UserTable WHERE Phone==";
         $query = $query."\"".$_POST['phone']."\"";

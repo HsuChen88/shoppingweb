@@ -25,7 +25,7 @@
     }
 
     function checkUser($_phone, $rowName) {
-        $dbName = 'sqlite:user.db';
+        $dbName = 'sqlite:alldata.db';
 
         $pdo = new PDO($dbName);
         $query = "SELECT $rowName FROM UserTable WHERE $rowName=='$_phone'";
