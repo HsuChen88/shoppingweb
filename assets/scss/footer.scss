@@ -12,8 +12,9 @@ $fontcolor2: white;
 	background-repeat: repeat-x, repeat;
 
     padding: 60px;
-    margin: 0;
+    margin: auto;
     margin-top: 30px;
+
 }
 
 #bottom{
@@ -22,4 +23,10 @@ $fontcolor2: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: lighter;
     font-size: xx-small;
+}
+
+.information{
+    margin-left: 30px;
+    margin-right: 30px;
+    display: inline-flex;
 }
