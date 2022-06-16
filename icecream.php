@@ -13,16 +13,29 @@
 	<?php
 	function addToCart(){
 		$pdo = new PDO('sqlite:alldata.db');
-		$query = "SELECT id,product_name,price FROM Products WHERE id==1";
+		$query = "SELECT id,product_name FROM Products WHERE id==1";
 		$sth = $pdo->query($query);
 		$sth->setFetchMode(PDO::FETCH_NUM);
-		$data = $sth->fetchAll();
-		$id = $data[0][0];
-		$name = $data[0][1];				
-		$price = $data[0][2];
+		$productData = $sth->fetchAll();
+
+		$product_id = $productData[0][0];
+		$product_name = $productData[0][1];
+		
 		$pdo = new PDO('sqlite:alldata.db');
-		$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$id','$name','$price')");
-        $sth->execute();
+		$query = "SELECT amount FROM Cart WHERE product_id==$product_id";
+		$sth = $pdo->query($query);
+		$sth->setFetchMode(PDO::FETCH_NUM);
+		$getCartData = $sth->fetchAll();
+		$amount = $getCartData[0][0];
+		if ($amount > 0) {
+			$amount += 1;
+			$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE product_id==$product_id");
+			$sth->execute();
+		}
+		else {
+			$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$product_id','$product_name',1)");
+			$sth->execute();
+		}
 		echo "product added.";
 	}
 	?>
@@ -62,9 +75,9 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="register.html">註冊</a></li>
+									<li><a href="login.html">登入</a></li>
+									<li class="current"><a href="ShoppingCart.html">購物車</a></li>
 								</ul>
 							</nav>
 
