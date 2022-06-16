@@ -60,16 +60,15 @@
 						<div id="content">
 
 							<!-- Content -->
-							<ul style="list-style-type:none;">
-								<li>
-									<table>
-										<td>圖片</td>
-										<td>商品名稱</td>
-										<td>單價</td>
-										<td>數量</td>
-										<td>操作</td>
-									</table>
-								</li>
+							<table>
+								<tr>
+									<td>圖片</td>
+									<td>商品名稱</td>
+									<td>單價</td>
+									<td>數量</td>
+									<td>操作</td>
+								</tr>
+							
 							<?php
 							$user_id = 1;	//暫時用我自己
 							$pdo = new PDO('sqlite:alldata.db');
@@ -97,22 +96,19 @@
 									$product_name= $productData[0][1];
 									$price= $productData[0][4];
 	
-									echo "<ul style=\"list-style-type:none;\">
-										<li>
-											<table>
-												<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
-												<td>$product_name</td>
-												<td>$price</td>
-												<td>$amount</td>
-												<td><button>刪除<button></td>
-											</table>
-										</li>";
+									echo "
+									<tr>
+										<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
+										<td>$product_name</td>
+										<td>$price</td>
+										<td>$amount</td>
+										<td><button>刪除</button></td>
+									</tr>";
 								}
 							}
-
 							
 							?>
-							</ul>
+							</table>
 						</div>
 					</div>
 				</div>
