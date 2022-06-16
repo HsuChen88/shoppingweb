@@ -10,7 +10,9 @@
   text-decoration: none;
 }
 #nav :hover {
+  background-color: #34435f;
   color: white;
+  border-radius: 5px;
 }
 #nav :hover .icon {
   color: white;

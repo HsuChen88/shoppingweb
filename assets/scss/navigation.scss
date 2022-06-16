@@ -18,10 +18,12 @@ $fontcolor2: white;
     }
 
     :hover{
+        background-color: #34435f;
         .icon{
             color: $fontcolor2;
         }
         color: $fontcolor2;
+        border-radius: 5px;
     }
 }
 
