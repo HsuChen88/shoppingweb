@@ -16,6 +16,8 @@
     $checkPwd = checkUser($password, $rowPassword);       // arg2:大寫為資料庫row名稱
     if ($checkPwd == TRUE) {
         header("Location:index.html");
+        session_start();
+        $_SESSION['userName'] = $phone;
     }
     else {
         echo '<script language="javascript">';

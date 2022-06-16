@@ -93,18 +93,18 @@
 									$sth->setFetchMode(PDO::FETCH_NUM);
 									$productData = $sth->fetchAll();
 	
-									$picture_ref = $productData[0][5];
+									$picture_ref = "./product_img/".$productData[0][5];
 									$product_name= $productData[0][1];
 									$price= $productData[0][4];
 	
 									echo "<ul style=\"list-style-type:none;\">
 										<li>
 											<table>
-												<td>$picture_ref</td>
+												<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
 												<td>$product_name</td>
 												<td>$price</td>
 												<td>$amount</td>
-												<td>刪除</td>
+												<td><button>刪除<button></td>
 											</table>
 										</li>";
 								}
@@ -201,7 +201,7 @@
 
 		<!-- Scripts -->
 
-			<script src="assets/js/jquery.min.js"></>
+			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
