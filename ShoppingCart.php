@@ -77,37 +77,40 @@
 							$sth = $pdo->query($query);
 							$sth->setFetchMode(PDO::FETCH_NUM);
 							$getCartData = $sth->fetchAll();
-
+							
 							if (isset($getCartData[0]) == FALSE) {
 								echo "<p>購物車內空空如也!<br>";
 								echo "先給我去逛逛!</p>";
 							}
 							else {
-								$product_id = $getCartData[0][2];
-								$amount = $getCartData[0][3];
+								for ($i=0; $i < count($getCartData); $i++) {
+									$product_id = $getCartData[$i][2];
+									$amount = $getCartData[$i][3];
+									
+									$pdo = new PDO('sqlite:alldata.db');
+									$query = "SELECT * FROM Products WHERE id==$product_id";
+									$sth = $pdo->query($query);
+									$sth->setFetchMode(PDO::FETCH_NUM);
+									$productData = $sth->fetchAll();
+	
+									$picture_ref = $productData[0][5];
+									$product_name= $productData[0][1];
+									$price= $productData[0][4];
+	
+									echo "<ul style=\"list-style-type:none;\">
+										<li>
+											<table>
+												<td>$picture_ref</td>
+												<td>$product_name</td>
+												<td>$price</td>
+												<td>$amount</td>
+												<td>刪除</td>
+											</table>
+										</li>";
+								}
 							}
 
-							$pdo = new PDO('sqlite:alldata.db');
-							$query = "SELECT * FROM Products WHERE id==$product_id";
-							$sth = $pdo->query($query);
-							$sth->setFetchMode(PDO::FETCH_NUM);
-							$productData = $sth->fetchAll();
-
-							// // $picture_ref = $productData[5];
-							$picture_ref = "123456789";
-							$product_name= $productData[0][1];
-							$price= $productData[0][4];
-
-							echo "<ul style=\"list-style-type:none;\">
-								<li>
-									<table>
-										<td>$picture_ref</td>
-										<td>$product_name</td>
-										<td>$price</td>
-										<td>$amount</td>
-										<td>刪除</td>
-									</table>
-								</li>"
+							
 							?>
 							</ul>
 						</div>
