@@ -2,7 +2,6 @@
 <?php
 	session_start();
 
-	// echo $_COOKIE["user_id_cookie"];
 	$pdo = new PDO('sqlite:alldata.db');
     $query = "SELECT Name FROM UserTable WHERE Phone==";
     $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
@@ -11,7 +10,7 @@
     $data = $sth->fetchAll();
 	$member = $data[0][0];
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.html";
-	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.html";
+	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
 ?>
 <html>
 	<head>
@@ -76,7 +75,7 @@
 
 			<div id="main">
 				<div class="container">
-					<form class="app" method="POST" action="login.php">
+					<form class="app" method="POST" action="condition.php">
 						<h5>登入</h5>
 						<h1>手機號碼</h1>
 						<input type="text" id="content" name="phone"/>
@@ -86,7 +85,7 @@
 						<p>初來乍到?<a href="register.html">加入會員</a></p>
 					  </form>
 				</div>
-			</div>
+			</div>		
 
 			<div id="footer">
 				<div class="information">
@@ -146,12 +145,12 @@
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script language="javascript">
+<!-- <script language="javascript">
 	const loginBtn = document.getElementById('loginBtn')
 	loginBtn.addEventListener('click', function () {
 		location.href='login.php';
 	});
-</script>
+</script> -->
 
 <script>
 
