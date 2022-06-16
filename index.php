@@ -54,7 +54,7 @@
 									</li>
 									<li><a href="register.html">註冊</a></li>
 									<li><a href="login.html">登入</a></li>	<!-- 這邊要改成 "歡迎光臨".$userName 登入顯示-->
-									<li><a href="no-sidebar.html">購物車</a></li>
+									<li><a href="no-sidebar.php">購物車</a></li>
 								</ul>
 							</nav>
 							
