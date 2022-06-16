@@ -7,27 +7,36 @@
     if ($userName == "") $userName = "user";
     
     $phonePattern = "/09[0-9]{8}$/";
-    $passwordPattern = "/(?:"."$confirmPassword".")$/";
+    $pwdLeastPattern = "/.{8}/";
+    $pwdSamePattern = "/(?:"."$confirmPassword".")$/";
     preg_match($phonePattern, $phone, $phoneMatches);
-    preg_match($passwordPattern, $password, $passwordMatches);
+    preg_match($pwdLeastPattern, $password, $pwdLeastMatches);
+    preg_match($pwdSamePattern, $password, $pwdSameMatches);
     
-    // 確認兩次密碼相同
-    if ($passwordMatches == FALSE) {
-        echo '<script language="javascript">';
-        echo "alert(\"兩次輸入的密碼不相同\\n請再輸入一次\");";
-        echo "location.href='register.html';";
-        echo "</script>";
-    }
     // 確認電話號碼有無錯誤
-    else if ($phoneMatches == FALSE) {
+    if ($phoneMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"請輸入正確的電話號碼\");";
         echo "location.href='register.html';";
         echo "</script>";
     }
+    // 確認密碼長度超過8個字
+    else if ($pwdLeastMatches == FALSE) {
+        echo '<script language="javascript">';
+        echo "alert(\"輸入的密碼未達8個字\\n請再輸入一次\");";
+        echo "location.href='register.html';";
+        echo "</script>";
+    }
+    // 確認兩次密碼相同
+    else if ($pwdSameMatches == FALSE) {
+        echo '<script language="javascript">';
+        echo "alert(\"兩次輸入的密碼不相同\\n請再輸入一次\");";
+        echo "location.href='register.html';";
+        echo "</script>";
+    }
     // 無誤 創建新用戶
     else {
-        $dbName = 'sqlite:user.db';
+        $dbName = 'sqlite:alldata.db';
         $pdo = new PDO($dbName);
         $query = "SELECT Phone FROM UserTable WHERE Phone==";
         $query = $query."\"".$_POST['phone']."\"";
@@ -42,7 +51,7 @@
             echo "</script>";
         }
         else {
-            $sth = $pdo->prepare("INSERT INTO UserTable VALUES('$phone','$userName','$password')");
+            $sth = $pdo->prepare("INSERT INTO UserTable VALUES(NULL,'$phone','$userName','$password')");
             $sth->execute();
             header("Location: midstop.html");
         }
