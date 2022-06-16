@@ -51,7 +51,7 @@
             echo "</script>";
         }
         else {
-            $sth = $pdo->prepare("INSERT INTO UserTable VALUES('$phone','$userName','$password')");
+            $sth = $pdo->prepare("INSERT INTO UserTable VALUES(NULL,'$phone','$userName','$password')");
             $sth->execute();
             header("Location: midstop.html");
         }
