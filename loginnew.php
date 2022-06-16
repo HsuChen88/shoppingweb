@@ -66,7 +66,7 @@
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
-							<a href="/loginnew.php">
+							<a href="/login.php">
 								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
 							</a>
 						</div>
@@ -75,28 +75,17 @@
 			</div>
 
 			<div id="main">
-				<v-carousel
-					cycle
-					height="400"
-					hide-delimiter-background
-					show-arrows= "hover"
-				>
-					<v-carousel-item
-					v-for="(slide, i) in slides"
-					:key="i"
-					>
-						<v-sheet
-							:color="colors[i]"
-							height="100%"
-						>
-							<div class="d-flex fill-height justify-center align-center">
-								<div class="text-h2">
-									{{ slide }} Slide
-								</div>
-							</div>
-						</v-sheet>
-					</v-carousel-item>
-				</v-carousel>
+				<div class="container">
+					<form class="app" method="POST" action="login.php">
+						<h5>登入</h5>
+						<h1>手機號碼</h1>
+						<input type="text" id="content" name="phone"/>
+						<h1>輸入密碼</h1>
+						<input type="text" id="content" name="password"/>
+						<button class="add" id="loginBtn">登入</button>
+						<p>初來乍到?<a href="register.html">加入會員</a></p>
+					  </form>
+				</div>
 			</div>
 
 			<div id="footer">
@@ -156,6 +145,13 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script language="javascript">
+	const loginBtn = document.getElementById('loginBtn')
+	loginBtn.addEventListener('click', function () {
+		location.href='login.php';
+	});
+</script>
 
 <script>
 
