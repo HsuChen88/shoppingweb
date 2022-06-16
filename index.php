@@ -1,265 +1,98 @@
 <!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>楊東翰</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 		<script src="https://kit.fontawesome.com/be03ab0af6.js" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<link rel="stylesheet" href="./assets/css/header.css" />
+		<link rel="stylesheet" href="./assets/css/footer.css" />
 	</head>
 	<body class="is-preload homepage">
-		<div id="page-wrapper">
-
-			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
-
-						<!-- Logo -->
-							<a href="index.html">
-								<div id="logo">
-									<h1>Shawning Shop</h1>
-								</div>
+		<v-app id="app">
+			<v-main>
+			<div id="header">
+				<v-row>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<a id="logo" href="/">
+							<h2>Shawning Shop</h2>
+						</a>
+					</v-col>
+					<v-col cols="12" lg="6" md="6" sm="12">
+						<input type="text" v-model="input" placeholder="Search.." id="search">
+						<div>
+						<v-chip-group
+						active-class="primary--text"
+						column
+						>
+							<v-chip class="bg-white"
+							v-for="tag in tags"
+							:key="tag"
+							>
+							{{ tag }}
+							</v-chip>
+						</v-chip-group>
+						{{input}}
+						</div>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<div id="nav">
+							<a href="/ShoppingCart.php">
+								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
-							<div>by Dino & Shawn</div>
-
-							
-
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">關於我們</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="register.html">註冊</a></li>
-									<li><a href="login.html">登入</a></li>	<!-- 這邊要改成 "歡迎光臨".$userName 登入顯示-->
-									<li><a href="no-sidebar.html">購物車</a></li>
-								</ul>
-							</nav>
-							
-							<div id="search" >
-								<form action="search.php" method="POST">
-									<input type="text" placeholder="Search..">
-									<button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-								</form>
-							</div>
-					</header>
-				</div>
-
-			<!-- Banner -->
-				<div id="banner-wrapper">
-					<div id="banner" class="box container">
-						<div class="row">
-							<div class="col-7 col-12-medium">
-								<h2>Hi. This is Verti.</h2>
-								<p>It's a free responsive site template by HTML5 UP</p>
-							</div>
-							<div class="col-5 col-12-medium">
-								<ul>
-									<li><a href="#" class="button large icon solid fa-arrow-circle-right">Ok let's go</a></li>
-									<li><a href="#" class="button alt large icon solid fa-question-circle">More info</a></li>
-								</ul>
-							</div>
+							<a href="/register.html">
+								<v-icon class="icon">mdi-account-plus</v-icon>註冊
+							</a>
+							<a href="/login.html">
+								<v-icon class="icon">mdi-account</v-icon>登入
+							</a>
 						</div>
-					</div>
-				</div>
+					</v-col>
+				</v-row>
+			</div>
 
-			<!-- Features -->
-				<div id="features-wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Put something here</h2>
-												<p>Maybe here as well I think</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>An interesting title</h2>
-												<p>This is also an interesting subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Oh, and finally ...</h2>
-												<p>Here's another intriguing subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-			<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-4 col-12-medium">
-
-								<!-- Sidebar -->
-									<div id="sidebar">
-										<section class="widget thumbnails">
-											<h3>Interesting stuff</h3>
-											<div class="grid">
-												<div class="row gtr-50">
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
-												</div>
-											</div>
-											<a href="#" class="button icon fa-file-alt">More</a>
-										</section>
-									</div>
-
-							</div>
-							<div class="col-8 col-12-medium imp-medium">
-
-								<!-- Content -->
-									<div id="content">
-										<section class="last">
-											<h2>So what's this all about?</h2>
-											<p>This is <strong>Verti</strong>, a free and fully responsive HTML5 site template by <a href="http://html5up.net">HTML5 UP</a>.
-											Verti is released under the <a href="http://html5up.net/license">Creative Commons Attribution license</a>, so feel free to use it for any personal or commercial project you might have going on (just don't forget to credit us for the design!)</p>
-											<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.</p>
-											<a href="#" class="button icon solid fa-arrow-circle-right">Continue Reading</a>
-										</section>
-									</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Contact -->
-									<section class="widget contact last">
-										<h3>Contact Us</h3>
-										<ul>
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-										</ul>
-										<p>1234 Fictional Road<br />
-										Nashville, TN 00000<br />
-										(800) 555-0000</p>
-									</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
+			<div id="main">
+				<v-carousel
+					cycle
+					height="400"
+					hide-delimiter-background
+					show-arrows= "hover"
+				>
+					<v-carousel-item
+					v-for="(slide, i) in slides"
+					:key="i"
+					>
+						<v-sheet
+							:color="colors[i]"
+							height="100%"
+						>
+							<div class="d-flex fill-height justify-center align-center">
+								<div class="text-h2">
+									{{ slide }} Slide
 								</div>
 							</div>
-						</div>
-					</footer>
-				</div>
-
+						</v-sheet>
+					</v-carousel-item>
+				</v-carousel>
 			</div>
+
+			<div id="footer">
+				contact us:
+				<input type="text" placeholder="tell us.." class="layout-input">
+			</div>
+			<div id="bottom">
+				This Website is made by Shawn & Dino in 2022 June.
+			</div>
+			
+			</v-main>
+		</v-app>
 
 		<!-- Scripts -->
 
@@ -270,5 +103,51 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+new Vue({
+	el:'#app',
+	vuetify: new Vuetify(),
+	data () {
+      return {
+        colors: [
+			'indigo',
+			'warning',
+			'pink darken-2',
+			'red lighten-1',
+			'deep-purple accent-4',
+        ],
+        slides: [
+			'First',
+			'Second',
+			'Third',
+			'Fourth',
+			'Fifth',
+        ],
+		tags: [
+			'Work',
+			'Home Improvement',
+			'Vacation',
+			'Food',
+			'Drawers',
+			'Shopping',
+			'Art',
+			'Tech'
+		]
+      }
+    },
+	methods: {
+	}
+
+});
+
+
+</script>
+		
 	</body>
 </html>

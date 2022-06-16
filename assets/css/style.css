@@ -1,0 +1,45 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#main {
+  width: 67vw;
+  min-width: 800px;
+  height: 100%;
+  margin: auto;
+  margin-top: 60px;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0;
+  background-color: #fff7ec;
+}
+
+.container {
+  height: 10vw;
+  min-height: 400px;
+  width: 67vw;
+  min-width: 800px;
+  background-color: #fff7ec;
+  margin: auto;
+  margin-top: 60px;
+}
+
+#search {
+  background-color: white;
+  border: 2px #8f9da7 groove;
+  border-radius: 3px;
+}
+
+.layout-input {
+  border: 2px #8f9da7 groove;
+  border-radius: 3px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -32,15 +32,8 @@
 
 <script>
 import TheNavigation from './TheNavigation.vue'
-import { ref } from 'vue'
 
 export default {
-  setup () {
-    return {
-      input: ref('')
-    }
-  },
-
   components: {
     TheNavigation
   },

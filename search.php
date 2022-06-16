@@ -7,13 +7,10 @@
 	    <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
 	<body>
 		<div class="container" id="searchApp">
 			<br />
-			<h3 align="center">Vue.js Live Data Search with PHP & Mysql</h3>
 			<br />
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -45,13 +42,25 @@
 				</div>
 			</div>
 		</div>
+		<div id="app">
+    		<v-app>
+      			<v-main>
+    				<v-container>Hello world</v-container>
+      			</v-main>
+    		</v-app>
+  		</div>
 	</body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
 
 var application = new Vue({
 	el:'#searchApp',
+	vuetify: new Vuetify(),
 	data:{
 		allData:'',
 		query:'',
