@@ -18,7 +18,7 @@
 	$getCartData = $sth->fetchAll();
     var_dump($getCartData);
     echo "<br>";
-
+    
     for ($i=0; $i < count($getCartData); $i++) {
         $product_id = $getCartData[$i][2];
         $amount = $getCartData[$i][3];
