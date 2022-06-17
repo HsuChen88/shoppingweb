@@ -83,10 +83,12 @@
 									$getCartData = $sth->fetchAll();
 									
 									if (isset($getCartData[0]) == FALSE) {
-										echo "<p>購物車內空空如也!<br>";
-										echo "先給我去逛逛!</p>";
+										$nothing = TRUE;
+										echo "<h3>購物車內空空如也!<br>";
+										echo "先給我去逛逛!</h3>";
 									}
 									else {
+										$nothing = FALSE;
 										for ($i=0; $i < count($getCartData); $i++) {
 											$product_id = $getCartData[$i][2];
 											$amount = $getCartData[$i][3];
@@ -117,7 +119,7 @@
 										<td></td>
 										<td>總金額:</td>
 										<td><?php echo $sum; ?></td>
-										<td><button id="checkoutBtn">結帳</button></td>
+										<td><button id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</button></td>
 									</tr>
 							</table>
 
