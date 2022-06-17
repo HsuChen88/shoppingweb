@@ -13,11 +13,12 @@
 
 <html>
     <head>
-        <title>checkout</title>
+        <title>訂單已完成</title>
     </head>
     <body>
         <div id='checkout' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);'>
-            商品已在路上了!!
+            <img src="/images/checkedout.jpg" alt="這是一隻郵差鳥" class="center" width="350" height="350">
+            <h1>商品已經在路上囉~</h1>
             <button id="backBtn">回首頁</button>
         </div>
     </body>
@@ -53,7 +54,6 @@
         $sth->execute();
     }
 ?>
-
 
 
 <script language="javascript">

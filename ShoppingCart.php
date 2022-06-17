@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <?php
 	session_start();
 
@@ -79,48 +74,45 @@
 									<td>數量</td>
 									<td>操作</td>
 								</tr>
-							
-							<?php
-							$sum = 0;
-							$pdo = new PDO('sqlite:alldata.db');
-							$query = "SELECT * FROM Cart WHERE user_id==$user_id";
-							$sth = $pdo->query($query);
-							$sth->setFetchMode(PDO::FETCH_NUM);
-							$getCartData = $sth->fetchAll();
-							
-							if (isset($getCartData[0]) == FALSE) {
-								echo "<p>購物車內空空如也!<br>";
-								echo "先給我去逛逛!</p>";
-							}
-							else {
-								for ($i=0; $i < count($getCartData); $i++) {
-									$product_id = $getCartData[$i][2];
-									$amount = $getCartData[$i][3];
-									
+								<?php
+									$sum = 0;
 									$pdo = new PDO('sqlite:alldata.db');
-									$query = "SELECT * FROM Products WHERE id==$product_id";
+									$query = "SELECT * FROM Cart WHERE user_id==$user_id";
 									$sth = $pdo->query($query);
 									$sth->setFetchMode(PDO::FETCH_NUM);
-									$productData = $sth->fetchAll();
-	
-									$picture_ref = "./product_img/".$productData[0][5];
-									$product_name= $productData[0][1];
-									$price= $productData[0][4];
-	
-									$sum += $price * $amount;
-									echo "
+									$getCartData = $sth->fetchAll();
+									
+									if (isset($getCartData[0]) == FALSE) {
+										echo "<p>購物車內空空如也!<br>";
+										echo "先給我去逛逛!</p>";
+									}
+									else {
+										for ($i=0; $i < count($getCartData); $i++) {
+											$product_id = $getCartData[$i][2];
+											$amount = $getCartData[$i][3];
+											
+											$pdo = new PDO('sqlite:alldata.db');
+											$query = "SELECT * FROM Products WHERE id==$product_id";
+											$sth = $pdo->query($query);
+											$sth->setFetchMode(PDO::FETCH_NUM);
+											$productData = $sth->fetchAll();
+			
+											$picture_ref = "./product_img/".$productData[0][5];
+											$product_name= $productData[0][1];
+											$price= $productData[0][4];
+			
+											$sum += $price * $amount;
+											echo "
+											<tr>
+												<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
+												<td>$product_name</td>
+												<td>$price</td>
+												<td>$amount</td>
+												<td><button>刪除</button></td>
+											</tr>";
+										}
+									}?>
 									<tr>
-										<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
-										<td>$product_name</td>
-										<td>$price</td>
-										<td>$amount</td>
-										<td><button>刪除</button></td>
-									</tr>";
-								}
-							}
-							
-							?>
-							<tr>
 										<td></td>
 										<td></td>
 										<td>總金額:</td>
