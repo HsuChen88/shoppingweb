@@ -12,6 +12,7 @@
 	$member = $data[0][0];
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
+	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
 ?>
 <html>
 	<head>
@@ -60,14 +61,14 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href="/ShoppingCart.php">
+							<a href=<?php echo $cart_login_url ?>>
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href=<?php echo $login_profile_url ?>>
-								<v-icon class="icon">mdi-account</v-icon>Welcome <?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
+								<v-icon class="icon">mdi-account</v-icon> <?php echo isset($_COOKIE["user_id_cookie"]) ? "Welcome ".$member : "登入" ?>
 							</a>
 						</div>
 					</v-col>
