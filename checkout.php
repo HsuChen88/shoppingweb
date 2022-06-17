@@ -11,14 +11,14 @@
     $user_id = $getUserData[0][0];
 ?>
 <?php
-    // echo "你已購買廢物";
+    echo "商品已在路上了!!";
     $pdo = new PDO('sqlite:alldata.db');
 	$query = "SELECT * FROM Cart WHERE user_id==$user_id";
 	$sth = $pdo->query($query);
 	$sth->setFetchMode(PDO::FETCH_NUM);
 	$getCartData = $sth->fetchAll();
-    var_dump($getCartData);
-    echo "<br>";
+    // var_dump($getCartData);
+    // echo "<br>";
     for ($i=0; $i < count($getCartData); $i++) {
         $product_id = $getCartData[$i][2];
         $amount = $getCartData[$i][3];
@@ -28,14 +28,17 @@
         $sth = $pdo->query($query);
         $sth->setFetchMode(PDO::FETCH_NUM);
         $productData = $sth->fetchAll(); 
-        var_dump($productData);
-        echo "<br>";
+        // var_dump($productData);
+        // echo "<br>";
         $product_amount = $productData[0][0];
         $product_amount -= $amount;
-        echo $product_amount;
-        echo $product_id;
 
-        $sth = $pdo->prepare("UPDATE Products SET amount=$product_amount WHERE id=$product_id");
+        $sth = $pdo->prepare("UPDATE Products SET amount=$product_amount WHERE id=$product_id;");
+        echo "minus";
+
+        // 刪除購物車內容
+        $pdo = new PDO('sqlite:alldata.db');
+        $sth = $pdo->prepare("DELETE FROM Cart WHERE user_id=$user_id");
         $sth->execute();
     }
 ?>
