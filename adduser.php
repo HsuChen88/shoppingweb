@@ -17,21 +17,21 @@
     if ($phoneMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"請輸入正確的電話號碼\");";
-        echo "location.href='register.html';";
+        echo "location.href='register.php';";
         echo "</script>";
     }
     // 確認密碼長度超過8個字
     else if ($pwdLeastMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"輸入的密碼未達8個字\\n請再輸入一次\");";
-        echo "location.href='register.html';";
+        echo "location.href='register.php';";
         echo "</script>";
     }
     // 確認兩次密碼相同
     else if ($pwdSameMatches == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"兩次輸入的密碼不相同\\n請再輸入一次\");";
-        echo "location.href='register.html';";
+        echo "location.href='register.php';";
         echo "</script>";
     }
     // 無誤 創建新用戶

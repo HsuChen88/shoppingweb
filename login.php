@@ -11,6 +11,7 @@
 	$member = $data[0][0];
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
+	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
 ?>
 <html>
 	<head>
@@ -59,14 +60,14 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href="/ShoppingCart.php">
+							<a href=<?php echo $cart_login_url ?>>
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href=<?php echo $login_profile_url ?>>
-								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
+								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
 							</a>
 						</div>
 					</v-col>
@@ -76,17 +77,11 @@
 			<div id="main">
 				<v-card class="container">
 					<form class="login" method="POST" action="login-check.php">
-						<h1>登入</h1>
-						<br>
+						<h1>登入</h1><br>
 						<h2>手機號碼</h2>
-						<input type="text" id="content" name="phone"/>
-						<br>
-						<br>
+						<input type="text" id="content" name="phone"/><br><br>
 						<h2>輸入密碼</h2>
-						<input type="password" id="content" name="password"/>
-						<br>
-						<br>
-						<br>
+						<input type="password" id="content" name="password"/><br><br><br>
 						<button type="submit" class="add" id="loginBtn" name="loginBtn" large>登入</button>
 						<p>初來乍到?<a href="register.php">加入會員</a></p>
 					  </form>
@@ -144,19 +139,12 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<!-- <script language="javascript">
-	const loginBtn = document.getElementById('loginBtn')
-	loginBtn.addEventListener('click', function () {
-		location.href='login.php';
-	});
-</script> -->
 
 <script>
 

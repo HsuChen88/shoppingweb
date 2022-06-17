@@ -64,7 +64,7 @@
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href=<?php echo $login_profile_url ?>>
-								<v-icon class="icon">mdi-account</v-icon> <?php echo isset($_COOKIE["user_id_cookie"]) ? "Welcome ".$member : "登入" ?>
+								<v-icon class="icon">mdi-account</v-icon> <?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
 							</a>
 						</div>
 					</v-col>

@@ -9,7 +9,7 @@
     if ($findAccount == FALSE) {
         echo '<script language="javascript">';
         echo "alert(\"查無此帳號..\\n請再輸入一次或先加入會員\");";
-        echo "location.href='login.html';";
+        echo "location.href='login.php';";
         echo "</script>";
     }
     // 檢查密碼
@@ -24,7 +24,7 @@
     else {
         echo '<script language="javascript">';
         echo "alert(\"密碼不正確..\\n請再輸入一次\");";
-        echo "location.href='login.html';";
+        echo "location.href='login.php';";
         echo "</script>";
     }
 
