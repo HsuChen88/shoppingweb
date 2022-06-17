@@ -58,7 +58,6 @@
 								{{ tag }}
 								</v-chip>
 							</v-chip-group>
-							{{input}}
 						</div>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -78,47 +77,45 @@
 			</div>
 
 			<div id="main">
-				<v-container>
-
 					<?php
 						$pdo = new PDO('sqlite:alldata.db');
 						$query = "SELECT * FROM Products";
 						$sth = $pdo->query($query);
 						$sth->setFetchMode(PDO::FETCH_NUM);
 						$getProductData = $sth->fetchAll();
-
-						
 					?>
 					<v-row>
+						
 						<?php
-							foreach ($i=0; $i < count($getProductData); $i++) {
-								$product_id = $getProductData[$i][0];
-								$product_name = $getProductData[$i][1];
-								$amount = $getProductData[$i][3];
-								$price= $getProductData[$i][4];
-								$picture_name= $getProductData[$i][5];
+							foreach ($getProductData as $i => $value) {
+								$product_id = $value[0];
+								$product_name = $value[1];
+								$amount = $value[3];
+								$price= $value[4];
+								$picture_name= $value[5];
 								$picture_ref = "./product_img/".$picture_name;
 
 								echo "
 								<v-col
-									cols='12'
-									sm='4'
+									cols='12' lg='4' md='6' sm='12'
 								>
-									
-									<v-card outline @click=''>
-										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
+									<a href='./product.php' onclick='"; $_SESSION[$browse]=$value[0]; echo "'>
+									<v-card outline>
+										<img src='$picture_ref' alt='$picture_name' style='height: 120px'/>
 										<br>
-										<h3>$product_id<h3><br>
-										<h2>$product_name<h2><br>
+										$product_id<br>
+										$product_name<br>
 										價格$price<br>
 										剩餘數量$amount
+										<br>
 									</v-card>
+									</a>
 								</v-col>
 								";
-							}
-						?>
+							};?>
+							
+						
 					</v-row>
-				</v-container>
 			</div>
 
 			<div id="footer">
@@ -167,15 +164,9 @@
 
 		<!-- Scripts -->
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
 
@@ -214,7 +205,6 @@ new Vue({
       }
     },
 	methods: {
-		
 	}
 });
 
