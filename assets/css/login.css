@@ -7,10 +7,14 @@
   margin: auto;
   margin-top: 60px;
 }
+.container h1 {
+  text-align: center;
+}
 .container input {
   padding: 5px;
   border: 2px #8f9da7 groove;
   border-radius: 3px;
+  width: 100%;
 }
 .container button {
   width: 100%;
@@ -21,6 +25,10 @@
   font-size: large;
   color: white;
   border-radius: 6px;
+}
+.container p {
+  padding: 8px;
+  font-size: 120%;
 }
 
 /*# sourceMappingURL=login.css.map */

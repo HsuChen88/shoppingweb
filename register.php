@@ -55,13 +55,13 @@
 					<div class="container">
 						<form class="app" method="POST" action="adduser.php">
                             <h1>加入會員</h1>
-                            <h1>使用者名稱</h1>
+                            <h2>使用者名稱</h2>
                             <input type="text" id="userdata" name="name" placeholder="user"/>
-                            <h1>手機號碼</h1>
+                            <h2>手機號碼</h2>
                             <input type="text" id="userdata" name="phone"/>
-                            <h1>輸入密碼<span>(至少8個字)</span></h1>
+                            <h2>輸入密碼<span>(至少8個字)</span></h2>
                             <input type="password" id="userdata" name="password"/>
-                            <h1>再次輸入密碼</h1>
+                            <h2>再次輸入密碼</h2>
                             <input type="password" id="userdata" name="confirmPassword"/>
 							<button type="submit" class="add" id="addBtn" name="addBtn">註冊</button>
                             <p>已經註冊過了嗎<a href="login.php">登入</a></p>
