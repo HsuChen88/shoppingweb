@@ -18,7 +18,6 @@
 	<head>
 		<title>楊東翰</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -39,29 +38,26 @@
 							<h2>Shawning Shop</h2>
 						</a>
 					</v-col>
-					<v-col cols="12" lg="6" md="6" sm="12">
+					<v-col cols="12" lg="6" md="6" sm="12" >
 						<form action="search.php" methods="POST">
-							<input type="text" placeholder="Search.." id="search"/>
+							<input type="text" placeholder="Search.." id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</form>
-						<div>
-							<v-chip-group
-							active-class="primary--text"
+						<v-chip-group style="margin-left: 60px; padding-left: 60px"
+							active-class="primmary--text"
 							column
-							>
-								<v-chip class="bg-white"
+						>
+							<v-chip 
 								v-for="tag in tags"
 								:key="tag"
-								>
+							>
 								{{ tag }}
-								</v-chip>
-							</v-chip-group>
-							{{input}}
-						</div>
+							</v-chip>
+						</v-chip-group>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
-						<div id="nav">
-							<a href=<?php echo $cart_login_url ?>>
+						<div id="nav" >
+							<a href="/ShoppingCart.php">
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
@@ -78,24 +74,14 @@
 			<div id="main">
 				<v-carousel
 					cycle
-					height="400"
-					hide-delimiter-background
+					height="500"
 					show-arrows= "hover"
 				>
 					<v-carousel-item
-					v-for="(slide, i) in slides"
+					v-for="(item,i) in items"
 					:key="i"
+					:src="item.src"
 					>
-						<v-sheet
-							:color="colors[i]"
-							height="100%"
-						>
-							<div class="d-flex fill-height justify-center align-center">
-								<div class="text-h2">
-									{{ slide }} Slide
-								</div>
-							</div>
-						</v-sheet>
 					</v-carousel-item>
 				</v-carousel>
 			</div>
@@ -151,11 +137,9 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
@@ -180,14 +164,28 @@ new Vue({
 			'Fifth',
         ],
 		tags: [
-			'Work',
-			'Home Improvement',
-			'Vacation',
-			'Food',
-			'Drawers',
-			'Shopping',
-			'Art',
-			'Tech'
+			'青軸',
+			'紅軸',
+			'無線',
+			'RGB',
+			'80 %',
+			'65 %',
+			'PBT',
+			'英文鍵帽'
+		],
+		items: [
+			{
+				src: './product_img/rog_flare2_2.jpg',
+			},
+			{
+				src: './product_img/razer_pro_typeultra_white_yellow_en.jpg',
+			},
+			{
+				src: './product_img/msi_gk71_red_2.jpg',
+			},
+			{
+				src: './product_img/filco_104_2.jpg',
+			}
 		]
       }
     },

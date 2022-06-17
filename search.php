@@ -75,31 +75,49 @@
 			</div>
 
 			<div id="main">
-				<table>
-				<?php
-				$pdo = new PDO('sqlite:alldata.db');
-				$query = "SELECT * FROM Products";
-				$sth = $pdo->query($query);
-				$sth->setFetchMode(PDO::FETCH_NUM);
-				$getProductData = $sth->fetchAll();
+				<v-container>
 
-					for ($i=0; $i < count($getProductData); $i++) {
-						$product_id = $getProductData[$i][0];
-						$product_name = $getProductData[$i][1];
-						$amount = $getProductData[$i][3];
-						$price= $getproductData[$i][4];
-						$picture_ref = "./product_img/".$getproductData[$i][5];
+					<?php
+						$pdo = new PDO('sqlite:alldata.db');
+						$query = "SELECT * FROM Products";
+						$sth = $pdo->query($query);
+						$sth->setFetchMode(PDO::FETCH_NUM);
+						$getProductData = $sth->fetchAll();
+					?>
+					<v-row>
+						<?php
+							for ($i=0; $i < count($getProductData); $i++) {
+								$product_id = $getProductData[$i][0];
+								$product_name = $getProductData[$i][1];
+								$amount = $getProductData[$i][3];
+								$price= $getProductData[$i][4];
+								$picture_name= $getProductData[$i][5];
+								$picture_ref = "./product_img/".$picture_name;
 
-						echo "
-						<tr>
-							<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
-							<td>$product_name</td>
-							<td>$price</td>
-							<td>$amount</td>
-						</tr>";
-					}
-				?>
-				</table>
+								echo "
+								<v-col
+									cols='12'
+									sm='4'
+								>
+									<a href='./product.php' onclick='choose();'>
+									<v-card
+										class='pa-2'
+										outlined
+										tile
+									>
+										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
+										<br>
+										$product_name<br>
+										$price<br>
+										$amount
+									</v-card>
+									</a>
+								</v-col>
+								";
+							}
+						?>
+					</v-row>
+				</v-container>
 			</div>
 
 			<div id="footer">
@@ -161,6 +179,9 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
+function choose(){
+	setcookie('product_browse',$product_id,time()+3600);
+}
 
 new Vue({
 	el:'#app',
@@ -190,12 +211,14 @@ new Vue({
 			'Shopping',
 			'Art',
 			'Tech'
-		]
+		],
+		allData:'',
+		query:'',
+		nodata:false
       }
     },
 	methods: {
 	}
-
 });
 
 
