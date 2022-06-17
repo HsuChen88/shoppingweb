@@ -9,7 +9,7 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$member = $data[0][0];
-	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.html";
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
 ?>
 <html>
@@ -44,7 +44,7 @@
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</form>
 						<div>
-							<v-chip-group
+							<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primary--text"
 							column
 							>
@@ -55,7 +55,6 @@
 								{{ tag }}
 								</v-chip>
 							</v-chip-group>
-							{{input}}
 						</div>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">

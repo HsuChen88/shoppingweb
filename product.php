@@ -46,7 +46,7 @@
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</form>
 						<div>
-							<v-chip-group
+							<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primary--text"
 							column
 							>
