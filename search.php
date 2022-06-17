@@ -193,14 +193,14 @@ new Vue({
 			'Fifth',
         ],
 		tags: [
-			'Work',
-			'Home Improvement',
-			'Vacation',
-			'Food',
-			'Drawers',
-			'Shopping',
-			'Art',
-			'Tech'
+			'青軸',
+			'紅軸',
+			'無線',
+			'RGB',
+			'80 %',
+			'65 %',
+			'PBT',
+			'英文鍵帽'
 		],
 		allData:'',
 		query:'',
