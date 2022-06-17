@@ -1,0 +1,26 @@
+.container {
+  min-height: 400px;
+  width: 40vw;
+  min-width: 400px;
+  text-align: left;
+  padding: 75px;
+  margin: auto;
+  margin-top: 60px;
+}
+.container input {
+  padding: 5px;
+  border: 2px #8f9da7 groove;
+  border-radius: 3px;
+}
+.container button {
+  width: 450px;
+  height: 50px;
+  padding: 8px;
+  text-align: center;
+  background-color: rgb(108, 108, 108);
+  font-size: large;
+  color: white;
+  border-radius: 6px;
+}
+
+/*# sourceMappingURL=login.css.map */

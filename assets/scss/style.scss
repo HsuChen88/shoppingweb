@@ -27,18 +27,6 @@ html, body {
     background-color: $backgroundcolor;
   }
 
-  .container {
-    height: 10vw;
-    min-height: 400px;
-    width: 67vw;
-    min-width: 800px;
-
-    background-color: $backgroundcolor;
-
-    margin: auto;
-    margin-top: 60px;
-  }
-
 .layout-input{
   border:2px $fontcolor1 groove;
   border-radius: 3px;

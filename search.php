@@ -99,20 +99,14 @@
 								<v-col
 									cols='12'
 									sm='4'
-								>
-									<v-card id='product_choose'
-										class='pa-2'
-										click
-										outlined
-										tile
-									>
+								>"?>
+									<v-card @click='product_choose' outline><?php echo "
 										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
 										<br>
 										$product_name<br>
 										$price<br>
 										$amount
 									</v-card>
-									</a>
 								</v-col>
 								";
 							}
@@ -178,10 +172,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
-var product_choose = document.getElementById("product_choose");
-product_choose.addEventListener("click", function(){
-    setcookie('product_browse',$product_id,time()+3600);
-});
 
 new Vue({
 	el:'#app',
@@ -215,9 +205,16 @@ new Vue({
 		allData:'',
 		query:'',
 		nodata:false
+		
       }
     },
 	methods: {
+		product_choose: ()=>{
+			<?php 
+				setcookie('product_browse',$product_id,time()+3600);
+				Header('Location: product.php');
+			?>
+		}
 	}
 });
 
