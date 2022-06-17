@@ -76,47 +76,10 @@
 
 			<div id="main">
 				<v-container>
-
 					<?php
-						$pdo = new PDO('sqlite:alldata.db');
-						$query = "SELECT * FROM Products";
-						$sth = $pdo->query($query);
-						$sth->setFetchMode(PDO::FETCH_NUM);
-						$getProductData = $sth->fetchAll();
-					?>
-					<v-row>
-						<?php
-							for ($i=0; $i < count($getProductData); $i++) {
-								$product_id = $getProductData[$i][0];
-								$product_name = $getProductData[$i][1];
-								$amount = $getProductData[$i][3];
-								$price= $getProductData[$i][4];
-								$picture_name= $getProductData[$i][5];
-								$picture_ref = "./product_img/".$picture_name;
-
-								echo "
-								<v-col
-									cols='12'
-									sm='4'
-								>
-									<a href='./product.php' onclick='choose();'>
-									<v-card
-										class='pa-2'
-										outlined
-										tile
-									>
-										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
-										<br>
-										$product_name<br>
-										$price<br>
-										$amount
-									</v-card>
-									</a>
-								</v-col>
-								";
-							}
+                        echo $_COOKIE['product_browse'];
+                        echo 'cookie';
 						?>
-					</v-row>
 				</v-container>
 			</div>
 
@@ -166,22 +129,12 @@
 
 		<!-- Scripts -->
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
-function choose(){
-	setcookie('product_browse',$product_id,time()+3600);
-}
 
 new Vue({
 	el:'#app',
