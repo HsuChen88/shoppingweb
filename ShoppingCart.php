@@ -114,11 +114,11 @@
 											$sum += $price * $amount;
 											echo "
 											<v-row>
-											<v-col cols='12' sm='4'><img src='$picture_ref' alt='$product_name' style='height: 40px'></v-col>
+											<v-col cols='12' sm='4'><img src='$picture_ref' alt='$product_name' style='height: 120px'></v-col>
 											<v-col cols='12' sm='2'>$product_name</v-col>
 											<v-col cols='12' sm='2'>$price</v-col>
 											<v-col cols='12' sm='2'>$amount</v-col>
-											<v-col cols='12' sm='2'><button>刪除</button></v-col>
+											<v-col cols='12' sm='2'><v-btn class='btn'>刪除</v-btn></v-col>
 											</v-row>";
 										}
 									}?>
@@ -127,7 +127,7 @@
 										<v-col cols='12' sm='2'></v-col>
 										<v-col cols='12' sm='2'>總金額:</v-col>
 										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
-										<v-col cols='12' sm='2'><button id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</button></v-col>
+										<v-col cols='12' sm='2'><v-btn class='btn' id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
 									</v-row>
 							</table>
 				</div>
