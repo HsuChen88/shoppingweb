@@ -135,7 +135,7 @@
 										<v-col cols='12' sm='2'></v-col>
 										<v-col cols='12' sm='2'>總金額:</v-col>
 										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
-										<v-col cols='12' sm='2'><v-btn class='btn' id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
+										<v-col cols='12' sm='2'><v-btn class='btn' x-large id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
 									</v-row>
 							</table>
 				</div>
