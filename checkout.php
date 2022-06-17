@@ -10,8 +10,20 @@
 	$getUserData = $sth->fetchAll();
     $user_id = $getUserData[0][0];
 ?>
+
+<html>
+    <head>
+        <title>checkout</title>
+    </head>
+    <body>
+        <div id='checkout' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);'>
+            商品已在路上了!!
+            <button id="backBtn">回首頁</button>
+        </div>
+    </body>
+</html>
+
 <?php
-    echo "商品已在路上了!!";
     $pdo = new PDO('sqlite:alldata.db');
 	$query = "SELECT * FROM Cart WHERE user_id==$user_id";
 	$sth = $pdo->query($query);
@@ -34,7 +46,6 @@
         $product_amount -= $amount;
 
         $sth = $pdo->prepare("UPDATE Products SET amount=$product_amount WHERE id=$product_id;");
-        echo "minus";
 
         // 刪除購物車內容
         $pdo = new PDO('sqlite:alldata.db');
@@ -43,14 +54,6 @@
     }
 ?>
 
-<html>
-    <head>
-        <title>checkout</title>
-    </head>
-    <body>
-    <button id="backBtn">回首頁</button>
-    </body>
-</html>
 
 
 <script language="javascript">
