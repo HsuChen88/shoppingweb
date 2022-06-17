@@ -1,8 +1,4 @@
 <?php
-    ini_set("display_errors","On");
-    error_reporting(E_ALL);
-?>
-<?php
 	session_start();
 
     $pdo = new PDO('sqlite:alldata.db');
@@ -63,7 +59,7 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href=<?php echo $cart_login_url ?>>
+							<a href="/ShoppingCart.php">
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
@@ -80,7 +76,7 @@
 			<div id="main">
 				<v-container>
 					<?php
-                        echo $_COOKIE['product_browse'];
+                        echo $_SESSION['product_browse'];
 						?>
 				</v-container>
 			</div>
