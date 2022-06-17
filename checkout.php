@@ -11,7 +11,6 @@
     $user_id = $getUserData[0][0];
 ?>
 <?php
-    echo "商品已在路上了!!";
     $pdo = new PDO('sqlite:alldata.db');
 	$query = "SELECT * FROM Cart WHERE user_id==$user_id";
 	$sth = $pdo->query($query);
@@ -45,10 +44,13 @@
 
 <html>
     <head>
-        <title>checkout</title>
+        <title>訂單已完成</title>
+        <link rel="stylesheet" href="assets/css/checkout.css" />
     </head>
     <body>
-    <button id="backBtn">回首頁</button>
+    <img src="/images/checkedout.jpg" alt="這是一隻郵差鳥" class="center" width="350" height="350">
+    <h1>商品已經在路上囉~</h1>
+    <button id="backBtn" class="center">回首頁</button>
     </body>
 </html>
 
