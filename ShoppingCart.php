@@ -75,13 +75,13 @@
 			<div id="main">
 			<div id="main-wrapper">
 							<table>
-								<tr>
-									<td>圖片</td>
-									<td>商品名稱</td>
-									<td>單價</td>
-									<td>數量</td>
-									<td>操作</td>
-								</tr>
+								<v-row>
+									<v-col cols='12' sm='4'>圖片</v-col>
+									<v-col cols='12' sm='2'>商品名稱</v-col>
+									<v-col cols='12' sm='2'>單價</v-col>
+									<v-col cols='12' sm='2'>數量</v-col>
+									<v-col cols='12' sm='2'>操作</v-col>
+								</v-row>
 								<?php
 									$sum = 0;
 									$pdo = new PDO('sqlite:alldata.db');
@@ -92,7 +92,7 @@
 									
 									if (isset($getCartData[0]) == FALSE) {
 										$nothing = TRUE;
-										echo "<h3>購物車內空空如也!<br>";
+										echo "<h3><br><br><br>購物車內空空如也!<br>";
 										echo "先給我去逛逛!</h3>";
 									}
 									else {
@@ -113,22 +113,22 @@
 			
 											$sum += $price * $amount;
 											echo "
-											<tr>
-												<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
-												<td>$product_name</td>
-												<td>$price</td>
-												<td>$amount</td>
-												<td><button>刪除</button></td>
-											</tr>";
+											<v-row>
+											<v-col cols='12' sm='4'><img src='$picture_ref' alt='$product_name' style='height: 40px'></v-col>
+											<v-col cols='12' sm='2'>$product_name</v-col>
+											<v-col cols='12' sm='2'>$price</v-col>
+											<v-col cols='12' sm='2'>$amount</v-col>
+											<v-col cols='12' sm='2'><button>刪除</button></v-col>
+											</v-row>";
 										}
 									}?>
-									<tr>
-										<td></td>
-										<td></td>
-										<td>總金額:</td>
-										<td><?php echo $sum; ?></td>
-										<td><button id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</button></td>
-									</tr>
+									<v-row>
+										<v-col cols='12' sm='4'></v-col>
+										<v-col cols='12' sm='2'></v-col>
+										<v-col cols='12' sm='2'>總金額:</v-col>
+										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
+										<v-col cols='12' sm='2'><button id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</button></v-col>
+									</v-row>
 							</table>
 				</div>
 			</div>
