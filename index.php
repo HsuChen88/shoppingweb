@@ -72,7 +72,7 @@
 			</div>
 
 			<div id="main">
-				<v-carousel
+				<v-carousel 
 					cycle
 					height="500"
 					show-arrows= "hover"
