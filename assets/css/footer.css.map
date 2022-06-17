@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../scss/footer.scss","../sass/libs/_vendor.scss"],"names":[],"mappings":"AAOA;ECuWW;EAAA;EAAA;EAAA;EDrWV;EACA;EACA;EAEG;EACA;EACA;;;AAIJ;EACI,kBAlBQ;EAmBR,OAjBS;EAkBT;EACA;EACA;;;AAGJ;EACI;EACA;EACA","file":"footer.css"}
+{"version":3,"sourceRoot":"","sources":["../scss/footer.scss","../sass/libs/_vendor.scss"],"names":[],"mappings":"AAOA;ECuWW;EAAA;EAAA;EAAA;EDrWV;EACA;EACA;EAEG;EACA;EACA;EAEA;;;AAGJ;EACI,kBAnBQ;EAoBR,OAlBS;EAmBT;EACA;EACA;;;AAGJ;EACI;EACA;EACA","file":"footer.css"}

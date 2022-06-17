@@ -46,9 +46,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 		<script src="https://kit.fontawesome.com/be03ab0af6.js" crossorigin="anonymous"></script>
 
+
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<link rel="stylesheet" href="./assets/css/header.css" />
 		<link rel="stylesheet" href="./assets/css/footer.css" />
+		<link rel="stylesheet" href="./assets/css/stickbottom.css" />
 	</head>
 	<body class="is-preload homepage">
 		<v-app id="app">
@@ -125,8 +127,15 @@
 					</v-row>
 
 				</v-container>
+				
 			</div>
 
+			
+			<div id='sticky'>
+				<h3>價格：<?php echo $productPrice ?></h3>
+				<h5>又怎麼了啊這隊友 叔叔！！！！ 叔叔開剁！！！ 瑞斯一打五！！！ 開！剁！ 不要跑！！！給我回來！ 誇抓kill！嘿嘿！ 還敢下來啊？冰鳥 555555555555 55555555555555555555555555555555555喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔 太舒服啦！！ 還他媽想給我卡牆？啊？ 這一次總讓我他媽糗到你了吧 還敢下來啊！ 瑞斯一打五 AAAAAAAA 這個角度夠好了吧 一個拉四個啊 實在舒服！ 你們剛剛有看到那個極靈嗎？ 還想開大絕啊 我直接一個W他直接起飛欸 太神啦叔叔 喔那ad在幹洨啊？ 故意的是不是啊</h2>
+			</div>
+			
 			<div id="footer">
 				<div class="information">
 					<h3>鄭旭辰<h3>
@@ -176,6 +185,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-sticky-position@2.0.0/dist/sticky.min.js"></script>
 
 <script>
 

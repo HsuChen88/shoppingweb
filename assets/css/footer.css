@@ -8,7 +8,8 @@
   background-repeat: repeat-x, repeat;
   padding: 60px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 0px;
+  z-index: 100;
 }
 
 #bottom {
