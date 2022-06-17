@@ -6,11 +6,32 @@
     $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
     $sth = $pdo->query($query);
     $sth->setFetchMode(PDO::FETCH_NUM);
-    $data = $sth->fetchAll();
-	$member = $data[0][0];
+    $getUserData = $sth->fetchAll();
+	$user_id = $getUserData[0][0];
+	 
+	$query = "SELECT Name FROM UserTable WHERE id==$user_id";
+    $sth = $pdo->query($query);
+    $sth->setFetchMode(PDO::FETCH_NUM);
+    $getName = $sth->fetchAll();
+	$member = $getName[0][0];
+
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
+?>
+<?php
+	$product_id = $_SESSION['product_browse'];
+	$pdo = new PDO('sqlite:alldata.db');
+    $query = "SELECT * FROM Products WHERE id==$product_id";
+    $sth = $pdo->query($query);
+    $sth->setFetchMode(PDO::FETCH_NUM);
+    $getProductData = $sth->fetchAll();
+	$productName = $getProductData[0][1];
+	$productCategory = $getProductData[0][2];
+	$productAmount = $getProductData[0][3];
+	$productPrice = $getProductData[0][4];
+	$productImage = $getProductData[0][5];
+	$productDescription = $getProductData[0][6];
 ?>
 <html>
 	<head>
@@ -76,8 +97,8 @@
 			<div id="main">
 				<v-container>
 					<?php
-                        echo $_SESSION['product_browse'];
-						?>
+                        
+					?>
 				</v-container>
 			</div>
 
