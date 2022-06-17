@@ -99,9 +99,9 @@
 									cols='12'
 									sm='4'
 								>
-									<a href='./product.php' onclick='choose();'>
-									<v-card
+									<v-card id='product_choose'
 										class='pa-2'
+										click
 										outlined
 										tile
 									>
@@ -171,17 +171,16 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
-function choose(){
-	setcookie('product_browse',$product_id,time()+3600);
-}
+var product_choose = document.getElementById("product_choose");
+product_choose.addEventListener("click", function(){
+    setcookie('product_browse',$product_id,time()+3600);
+});
 
 new Vue({
 	el:'#app',
