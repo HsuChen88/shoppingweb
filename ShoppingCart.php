@@ -31,8 +31,8 @@
 
 						<!-- Logo -->
 							<div id="logo">
-								<h1><a href="index.html">Verti</a></h1>
-								<span>by HTML5 UP</span>
+								<h1><a href="index.html">Shawning Shop</a></h1>
+								<span>by Shawn & Dino</span>
 							</div>
 
 						<!-- Nav -->
@@ -56,9 +56,9 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="/ShoppingCart.php">購物車</a></li>
+									<li><a href="/logout.php">登出</a></li>
+									<li><a href="/profile.php">Welcome</a></li>
 								</ul>
 							</nav>
 
