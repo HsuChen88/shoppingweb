@@ -9,6 +9,14 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$user_id = $data[0][0];
+
+    $query = "SELECT Name FROM UserTable WHERE Phone==";
+    $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
+    $sth = $pdo->query($query);
+    $sth->setFetchMode(PDO::FETCH_NUM);
+    $getName = $sth->fetchAll();
+    $member = $getName[0][0];
+
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
