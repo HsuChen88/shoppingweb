@@ -81,7 +81,7 @@
 
 
 			<div id="main">
-			<div id="main-wrapper">
+			    <div id="main-wrapper">
 							<table>
 								<v-row>
 									<v-col cols='12' sm='4'>圖片</v-col>
@@ -97,14 +97,13 @@
 									$sth = $pdo->query($query);
 									$sth->setFetchMode(PDO::FETCH_NUM);
 									$getCartData = $sth->fetchAll();
-									
-									if (isset($getCartData[0]) == FALSE) {
-										$nothing = TRUE;
-										echo "<h3><br><br><br>購物車內空空如也!<br>";
-										echo "先給我去逛逛!</h3>";
+
+									if (isset($getCartData[0]) == NULL) {
+										$nothing = 1;
 									}
 									else {
-										$nothing = FALSE;
+										$nothing = 0;
+                                        
 										for ($i=0; $i < count($getCartData); $i++) {
 											$product_id = $getCartData[$i][2];
 											$amount = $getCartData[$i][3];
@@ -135,7 +134,7 @@
 										<v-col cols='12' sm='2'></v-col>
 										<v-col cols='12' sm='2'>總金額:</v-col>
 										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
-										<v-col cols='12' sm='2'><v-btn class="ma-2 white--text" color='rgb(16, 111, 179)' x-large id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
+										<v-col cols='12' sm='2'><v-btn class="ma-2 white--text" color='rgb(16, 111, 179)' x-large id="checkoutBtn" <?php if ($nothing==1) echo "disabled" ?>>結帳</v-btn></v-col>
 									</v-row>
 							</table>
 				</div>
@@ -190,7 +189,8 @@
 			<script language="javascript">
 				const checkoutBtn = document.getElementById('checkoutBtn')
 				checkoutBtn.addEventListener('click', function () {
-					location.href='checkout.php';
+                    alert("anything");
+					// location.href='checkout.php';
 				});
 			</script>
 			<script src="assets/js/jquery.min.js"></script>
