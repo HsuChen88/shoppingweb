@@ -59,13 +59,13 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href="/ShoppingCart.php">
-								<v-icon class="icon">mdi-cart</v-icon>購物車<?php echo isset($_COOKIE["user_id_cookie"]) ?>
+							<a href=<?php echo $cart_login_url ?>>
+								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
-							<a href="/login.php">
+							<a href=<?php echo $login_profile_url ?>>
 								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
 							</a>
 						</div>
