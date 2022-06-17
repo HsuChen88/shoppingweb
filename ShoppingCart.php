@@ -9,63 +9,71 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$user_id = $data[0][0];
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
+	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
+	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
 ?>
 <html>
 	<head>
-		<title>Verti by HTML5 UP</title>
+		<title>購物車</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+		<script src="https://kit.fontawesome.com/be03ab0af6.js" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<link rel="stylesheet" href="./assets/css/header.css" />
+		<link rel="stylesheet" href="./assets/css/footer.css" />
 	</head>
 	<body class="is-preload no-sidebar">
-		<div id="page-wrapper">
+		<v-app id="app">
+			<v-main>
 
-			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
+			<div id="header">
+				<v-row>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<a id="logo" href="/UV21/">
+							<h2>Shawning Shop</h2>
+						</a>
+					</v-col>
+					<v-col cols="12" lg="6" md="6" sm="12" >
+						<form action="search.php" methods="POST">
+							<input type="text" placeholder="Search.." id="search" name="search"/>
+							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
+						</form>
+						<v-chip-group style="margin-left: 60px; padding-left: 60px"
+							active-class="primmary--text"
+							column
+						>
+							<v-chip 
+								v-for="tag in tags"
+								:key="tag"
+							>
+								{{ tag }}
+							</v-chip>
+						</v-chip-group>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<div id="nav" >
+							<a href=<?php echo $cart_login_url ?>>
+								<v-icon class="icon">mdi-cart</v-icon>購物車
+							</a>
+							<a href=<?php echo $register_logout_url ?>>
+								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
+							</a>
+							<a href=<?php echo $login_profile_url ?>>
+								<v-icon class="icon">mdi-account</v-icon> <?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
+							</a>
+						</div>
+					</v-col>
+				</v-row>
+			</div>
 
-						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="index.html">Shawning Shop</a></h1>
-								<span>by Shawn & Dino</span>
-							</div>
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="/ShoppingCart.php">購物車</a></li>
-									<li><a href="/logout.php">登出</a></li>
-									<li><a href="/profile.php">Welcome</a></li>
-								</ul>
-							</nav>
-
-					</header>
-				</div>
-
-			<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div id="content">
-
-							<!-- Content -->
+			<div id="main">
+			<div id="main-wrapper">
 							<table>
 								<tr>
 									<td>圖片</td>
@@ -122,93 +130,53 @@
 										<td><button id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</button></td>
 									</tr>
 							</table>
-
-							
-						</div>
-					</div>
 				</div>
+			</div>
+				
 
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
-
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Contact -->
-									<section class="widget contact">
-										<h3>Contact Us</h3>
-										<ul>
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-										</ul>
-										<p>1234 Fictional Road<br />
-										Nashville, TN 00000<br />
-										(800) 555-0000</p>
-									</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
+				<div id="footer">
+				<div class="information">
+					<h3>鄭旭辰<h3>
+					<v-btn class="mx-4 white--text" icon>
+						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<v-icon size="40px">
+							mdi-facebook
+						</v-icon>
+						</a>
+					</v-btn>
+					<v-btn class="mx-4 white--text" icon>
+						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<v-icon size="40px">
+							mdi-instagram
+						</v-icon>
+						</a>
+					</v-btn>
+				</div>
+				<div class="information">
+					<h3>楊東倫<h3>
+					<v-btn class="mx-4 white--text" icon>
+						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<v-icon size="40px">
+							mdi-facebook
+						</v-icon>
+						</a>
+					</v-btn>
+					<v-btn class="mx-4 white--text" icon>
+						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<v-icon size="40px">
+							mdi-instagram
+						</v-icon>
+						</a>
+					</v-btn>
 				</div>
 
 			</div>
+			<div id="bottom">
+				This Website is made by Shawn & Dino in 2022 June.
+			</div>
+
+			</v-main>
+		</v-app>
 
 		<!-- Scripts -->
 			<script language="javascript">
@@ -221,8 +189,65 @@
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+
+			<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+new Vue({
+	el:'#app',
+	vuetify: new Vuetify(),
+	data () {
+      return {
+        colors: [
+			'indigo',
+			'warning',
+			'pink darken-2',
+			'red lighten-1',
+			'deep-purple accent-4',
+        ],
+        slides: [
+			'First',
+			'Second',
+			'Third',
+			'Fourth',
+			'Fifth',
+        ],
+		tags: [
+			'青軸',
+			'紅軸',
+			'無線',
+			'RGB',
+			'80 %',
+			'65 %',
+			'PBT',
+			'英文鍵帽'
+		],
+		items: [
+			{
+				src: './product_img/rog_flare2_2.jpg',
+			},
+			{
+				src: './product_img/razer_pro_typeultra_white_yellow_en.jpg',
+			},
+			{
+				src: './product_img/msi_gk71_red_2.jpg',
+			},
+			{
+				src: './product_img/filco_104_2.jpg',
+			}
+		]
+      }
+    },
+	methods: {
+	}
+
+});
+
+
+</script>
 
 	</body>
 </html>
