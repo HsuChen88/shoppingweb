@@ -96,9 +96,32 @@
 
 			<div id="main">
 				<v-container>
-					<?php
-                        
-					?>
+					<v-row>
+						<v-col cols='12' lg='6' md='6' sm='12'>
+							<v-carousel>
+								<v-carousel-item
+								reverse-transition="fade-transition"
+								transition="fade-transition"
+								>
+								<img src='./product_img/<?php echo $productImage?>' alt='product'/>
+								</v-carousel-item>
+							</v-carousel>
+						</v-col>
+						<v-col cols='12' lg='6' md='6' sm='12'>
+								<h1><?php echo $productName ?></h1><br>
+								<div style="display: inline-flex;">
+									<h4>標籤：</h4>
+										<v-chip>
+											<?php echo $productCategory ?>
+										</v-chip>
+									<br><br>
+								</div>
+								<v-card elevation="0" text-align="left" class="blue--text"><h1>$<?php echo $productPrice ?></h1><br></v-card>
+								<h4>剩餘數量：<?php echo $productAmount ?></h4><br>
+							    <h4>產品介紹：<?php echo $productDescription ?></h4>
+						</v-col>
+					</v-row>
+
 				</v-container>
 			</div>
 
@@ -165,13 +188,6 @@ new Vue({
 			'pink darken-2',
 			'red lighten-1',
 			'deep-purple accent-4',
-        ],
-        slides: [
-			'First',
-			'Second',
-			'Third',
-			'Fourth',
-			'Fifth',
         ],
 		tags: [
 			'青軸',
