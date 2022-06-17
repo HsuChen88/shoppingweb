@@ -10,9 +10,9 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$member = $data[0][0];
-	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
-	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
-	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
+	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
+	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
 
 	$browse='product_browse';
 ?>
@@ -37,7 +37,7 @@
 			<div id="header">
 				<v-row>
 					<v-col cols="12" lg="3" md="3" sm="12">
-						<a id="logo" href="/">
+						<a id="logo" href="/UV21/">
 							<h2>Shawning Shop</h2>
 						</a>
 					</v-col>
