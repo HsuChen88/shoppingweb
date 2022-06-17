@@ -13,6 +13,8 @@
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
+
+	$browse='product_browse';
 ?>
 <html>
 	<head>
@@ -84,10 +86,12 @@
 						$sth = $pdo->query($query);
 						$sth->setFetchMode(PDO::FETCH_NUM);
 						$getProductData = $sth->fetchAll();
+
+						
 					?>
 					<v-row>
 						<?php
-							for ($i=0; $i < count($getProductData); $i++) {
+							foreach ($i=0; $i < count($getProductData); $i++) {
 								$product_id = $getProductData[$i][0];
 								$product_name = $getProductData[$i][1];
 								$amount = $getProductData[$i][3];
@@ -100,15 +104,15 @@
 									cols='12'
 									sm='4'
 								>
-									<div onclick='"; 	setcookie('product_browse',$product_id,time()+3600);
-														Header('Location: product.php'); 
-														echo "' outline>
+									
+									<v-card outline @click=''>
 										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
 										<br>
-										$product_name<br>
-										$price<br>
-										$amount
-									</div>
+										<h3>$product_id<h3><br>
+										<h2>$product_name<h2><br>
+										價格$price<br>
+										剩餘數量$amount
+									</v-card>
 								</v-col>
 								";
 							}
@@ -207,16 +211,10 @@ new Vue({
 		allData:'',
 		query:'',
 		nodata:false
-		
       }
     },
 	methods: {
-		product_choose: ()=>{
-			<?php 
-				setcookie('product_browse',$product_id,time()+3600);
-				Header('Location: product.php');
-			?>
-		}
+		
 	}
 });
 
