@@ -47,13 +47,16 @@
         if ($data == TRUE) {
             echo '<script language="javascript">';
             echo "alert(\"您已註冊過會員 請登入\");";
-            echo "location.href='login.html';";
+            echo "location.href='login.php';";
             echo "</script>";
         }
         else {
             $sth = $pdo->prepare("INSERT INTO UserTable VALUES(NULL,'$phone','$userName','$password')");
             $sth->execute();
-            header("Location: midstop.html");
+            echo '<script language="javascript">';
+            echo "alert(\"您已成功加入會員 請登入\");";
+            echo "location.href='login.php';";
+            echo "</script>";
         }
     }
 

@@ -1,10 +1,12 @@
-<!DOCTYPE HTML>
+<?php
+    ini_set("display_errors","On");
+    error_reporting(E_ALL);
+?>
 <?php
 	session_start();
 
-	// echo $_COOKIE["user_id_cookie"];
-	$pdo = new PDO('sqlite:alldata.db');
-    $query = "SELECT Name FROM UserTable WHERE Phone==";
+    $pdo = new PDO('sqlite:alldata.db');
+    $query = "SELECT id FROM UserTable WHERE Phone==";
     $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
     $sth = $pdo->query($query);
     $sth->setFetchMode(PDO::FETCH_NUM);

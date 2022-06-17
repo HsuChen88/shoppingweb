@@ -1,28 +1,13 @@
 <!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<?php
-	session_start();
-
-    $pdo = new PDO('sqlite:alldata.db');
-    $query = "SELECT id FROM UserTable WHERE Phone==";
-    $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
-    $sth = $pdo->query($query);
-    $sth->setFetchMode(PDO::FETCH_NUM);
-    $data = $sth->fetchAll();
-	$user_id = $data[0][0];
-?>
 <html>
 	<head>
-		<title>Verti by HTML5 UP</title>
+		<title>加入會員</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload no-sidebar">
+        <link rel="stylesheet" href="assets/css/square.css">
+    </head>
+	<body class="is-preload left-sidebar">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -31,8 +16,8 @@
 
 						<!-- Logo -->
 							<div id="logo">
-								<h1><a href="index.html">Shawning Shop</a></h1>
-								<span>by Shawn & Dino</span>
+								<h1><a href="index.html">Verti</a></h1>
+								<span>by HTML5 UP</span>
 							</div>
 
 						<!-- Nav -->
@@ -56,9 +41,9 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li><a href="/ShoppingCart.php">購物車</a></li>
-									<li><a href="/logout.php">登出</a></li>
-									<li><a href="/profile.php">Welcome</a></li>
+									<li class="current"><a href="register.php">註冊</a></li>
+									<li><a href="login.html">登入</a></li>
+									<li><a href="ShoppingCart.php">購物車</a></li>
 								</ul>
 							</nav>
 
@@ -68,69 +53,19 @@
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">
-						<div id="content">
-
-							<!-- Content -->
-							<table>
-								<tr>
-									<td>圖片</td>
-									<td>商品名稱</td>
-									<td>單價</td>
-									<td>數量</td>
-									<td>操作</td>
-								</tr>
-							
-							<?php
-							$sum = 0;
-							$pdo = new PDO('sqlite:alldata.db');
-							$query = "SELECT * FROM Cart WHERE user_id==$user_id";
-							$sth = $pdo->query($query);
-							$sth->setFetchMode(PDO::FETCH_NUM);
-							$getCartData = $sth->fetchAll();
-							
-							if (isset($getCartData[0]) == FALSE) {
-								echo "<p>購物車內空空如也!<br>";
-								echo "先給我去逛逛!</p>";
-							}
-							else {
-								for ($i=0; $i < count($getCartData); $i++) {
-									$product_id = $getCartData[$i][2];
-									$amount = $getCartData[$i][3];
-									
-									$pdo = new PDO('sqlite:alldata.db');
-									$query = "SELECT * FROM Products WHERE id==$product_id";
-									$sth = $pdo->query($query);
-									$sth->setFetchMode(PDO::FETCH_NUM);
-									$productData = $sth->fetchAll();
-	
-									$picture_ref = "./product_img/".$productData[0][5];
-									$product_name= $productData[0][1];
-									$price= $productData[0][4];
-	
-									$sum += $price * $amount;
-									echo "
-									<tr>
-										<td><img src='$picture_ref' alt='$product_name' style='height: 40px'></td>
-										<td>$product_name</td>
-										<td>$price</td>
-										<td>$amount</td>
-										<td><button>刪除</button></td>
-									</tr>";
-								}
-							}
-							
-							?>
-							<tr>
-										<td></td>
-										<td></td>
-										<td>總金額:</td>
-										<td><?php echo $sum; ?></td>
-										<td><button id="checkoutBtn">結帳</button></td>
-									</tr>
-							</table>
-
-							
-						</div>
+						<form class="app" method="POST" action="adduser.php">
+                            <h1>加入會員</h1>
+                            <h1>使用者名稱</h1>
+                            <input type="text" id="userdata" name="name" placeholder="user"/>
+                            <h1>手機號碼</h1>
+                            <input type="text" id="userdata" name="phone"/>
+                            <h1>輸入密碼<span>(至少8個字)</span></h1>
+                            <input type="password" id="userdata" name="password"/>
+                            <h1>再次輸入密碼</h1>
+                            <input type="password" id="userdata" name="confirmPassword"/>
+							<button type="submit" class="add" id="addBtn" name="addBtn">註冊</button>
+                            <p>已經註冊過了嗎<a href="login.php">登入</a></p>
+                          </form>
 					</div>
 				</div>
 
@@ -217,12 +152,7 @@
 			</div>
 
 		<!-- Scripts -->
-			<script language="javascript">
-				const checkoutBtn = document.getElementById('checkoutBtn')
-				checkoutBtn.addEventListener('click', function () {
-					location.href='checkout.php';
-				});
-			</script>
+
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
@@ -230,5 +160,11 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<!-- <script language="javascript">
+				const addBtn = document.getElementById('addBtn')
+				addBtn.addEventListener('click', function () {
+					location.href='adduser.php';
+				});
+			</script> -->
 	</body>
 </html>
