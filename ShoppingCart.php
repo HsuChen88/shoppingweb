@@ -126,7 +126,7 @@
 											<v-col cols='12' sm='2'>$product_name</v-col>
 											<v-col cols='12' sm='2'>$price</v-col>
 											<v-col cols='12' sm='2'>$amount</v-col>
-											<v-col cols='12' sm='2'><v-btn class='btn'>刪除</v-btn></v-col>
+											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552'>刪除</v-btn></v-col>
 											</v-row>";
 										}
 									}?>
@@ -135,7 +135,7 @@
 										<v-col cols='12' sm='2'></v-col>
 										<v-col cols='12' sm='2'>總金額:</v-col>
 										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
-										<v-col cols='12' sm='2'><v-btn class='btn' x-large id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
+										<v-col cols='12' sm='2'><v-btn class="ma-2 white--text" color='rgb(16, 111, 179)' x-large id="checkoutBtn" <?php if ($nothing==TRUE) echo "disabled" ?>>結帳</v-btn></v-col>
 									</v-row>
 							</table>
 				</div>
