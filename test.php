@@ -2,7 +2,6 @@
 <?php
 	session_start();
 
-	// echo $_COOKIE["user_id_cookie"];
 	$pdo = new PDO('sqlite:alldata.db');
     $query = "SELECT Name FROM UserTable WHERE Phone==";
     $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
@@ -10,9 +9,8 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$member = $data[0][0];
-	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.html";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
-	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
 ?>
 <html>
 	<head>
@@ -28,6 +26,8 @@
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<link rel="stylesheet" href="./assets/css/header.css" />
 		<link rel="stylesheet" href="./assets/css/footer.css" />
+		<link rel="stylesheet" href="./assets/css/square.css" />
+
 	</head>
 	<body class="is-preload homepage">
 		<v-app id="app">
@@ -61,65 +61,37 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href=<?php echo $cart_login_url ?>>
+							<a href="/ShoppingCart.php">
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
 							<a href=<?php echo $login_profile_url ?>>
-								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
+								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
 							</a>
 						</div>
 					</v-col>
 				</v-row>
 			</div>
 
-			<div id="main">
-				<v-container>
-
-					<?php
-						$pdo = new PDO('sqlite:alldata.db');
-						$query = "SELECT * FROM Products";
-						$sth = $pdo->query($query);
-						$sth->setFetchMode(PDO::FETCH_NUM);
-						$getProductData = $sth->fetchAll();
-					?>
-					<v-row>
-						<?php
-							for ($i=0; $i < count($getProductData); $i++) {
-								$product_id = $getProductData[$i][0];
-								$product_name = $getProductData[$i][1];
-								$amount = $getProductData[$i][3];
-								$price= $getProductData[$i][4];
-								$picture_name= $getProductData[$i][5];
-								$picture_ref = "./product_img/".$picture_name;
-
-								echo "
-								<v-col
-									cols='12'
-									sm='4'
-								>
-									<v-card id='product_choose'
-										class='pa-2'
-										click
-										outlined
-										tile
-									>
-										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
-										<br>
-										$product_name<br>
-										$price<br>
-										$amount
-									</v-card>
-									</a>
-								</v-col>
-								";
-							}
-						?>
-					</v-row>
-				</v-container>
-			</div>
+			<div id="main-wrapper">
+				<div class="container">
+                    <form class="app" method="POST" action="adduser.php">
+                        <h1>加入會員</h1>
+                        <h1>使用者名稱</h1>
+                        <input type="text" id="userdata" name="name" placeholder="user"/>
+                        <h1>手機號碼</h1>
+                        <input type="text" id="userdata" name="phone"/>
+                        <h1>輸入密碼<span>(至少8個字)</span></h1>
+                        <input type="password" id="userdata" name="password"/>
+                        <h1>再次輸入密碼</h1>
+                        <input type="password" id="userdata" name="confirmPassword"/>
+						<button type="submit" class="add" id="addBtn" name="addBtn">註冊</button>
+                        <p>已經註冊過了嗎<a href="login.php">登入</a></p>
+                    </form>
+				</div>
+			</div>		
 
 			<div id="footer">
 				<div class="information">
@@ -142,14 +114,14 @@
 				<div class="information">
 					<h3>楊東倫<h3>
 					<v-btn class="mx-4 white--text" icon>
-						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<a href="https://www.facebook.com/profile.php?id=100023998800521" style="text-decoration: none" target="_blank">
 						<v-icon size="40px">
 							mdi-facebook
 						</v-icon>
 						</a>
 					</v-btn>
 					<v-btn class="mx-4 white--text" icon>
-						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<a href="https://instagram.com/lun__0821?igshid=YmMyMTA2M2Y=" style="text-decoration: none" target="_blank">
 						<v-icon size="40px">
 							mdi-instagram
 						</v-icon>
@@ -172,16 +144,14 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
-var product_choose = document.getElementById("product_choose");
-product_choose.addEventListener("click", function(){
-    setcookie('product_browse',$product_id,time()+3600);
-});
 
 new Vue({
 	el:'#app',
@@ -211,14 +181,12 @@ new Vue({
 			'Shopping',
 			'Art',
 			'Tech'
-		],
-		allData:'',
-		query:'',
-		nodata:false
+		]
       }
     },
 	methods: {
 	}
+
 });
 
 
@@ -226,6 +194,3 @@ new Vue({
 		
 	</body>
 </html>
-
-
-
