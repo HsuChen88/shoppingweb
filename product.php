@@ -12,8 +12,9 @@
     $sth->setFetchMode(PDO::FETCH_NUM);
     $data = $sth->fetchAll();
 	$member = $data[0][0];
-	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.html";
-	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.html";
+	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "/logout.php" : "/register.php";
+	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "/profile.php" : "/login.php";
+	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "/ShoppingCart.php" : "/login.php";
 ?>
 <html>
 	<head>
@@ -46,7 +47,7 @@
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</form>
 						<div>
-							<v-chip-group
+							<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primary--text"
 							column
 							>
@@ -62,14 +63,14 @@
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<div id="nav">
-							<a href="/ShoppingCart.php">
+							<a href=<?php echo $cart_login_url ?>>
 								<v-icon class="icon">mdi-cart</v-icon>購物車
 							</a>
 							<a href=<?php echo $register_logout_url ?>>
 								<v-icon class="icon">mdi-account-plus</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "登出" : "註冊" ?>
 							</a>
-							<a href="/loginnew.php">
-								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? $member : "登入" ?>
+							<a href="/login.php">
+								<v-icon class="icon">mdi-account</v-icon><?php echo isset($_COOKIE["user_id_cookie"]) ? "歡迎".$member : "登入" ?>
 							</a>
 						</div>
 					</v-col>
@@ -80,7 +81,6 @@
 				<v-container>
 					<?php
                         echo $_COOKIE['product_browse'];
-                        echo 'cookie';
 						?>
 				</v-container>
 			</div>
