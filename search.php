@@ -99,14 +99,16 @@
 								<v-col
 									cols='12'
 									sm='4'
-								>"?>
-									<v-card @click='product_choose' outline><?php echo "
+								>
+									<div onclick='"; 	setcookie('product_browse',$product_id,time()+3600);
+														Header('Location: product.php'); 
+														echo "' outline>
 										<img src='$picture_ref' alt='$picture_name' style='height: 120px'>
 										<br>
 										$product_name<br>
 										$price<br>
 										$amount
-									</v-card>
+									</div>
 								</v-col>
 								";
 							}
