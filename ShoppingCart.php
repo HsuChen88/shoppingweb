@@ -4,6 +4,17 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php
+	session_start();
+
+    $pdo = new PDO('sqlite:alldata.db');
+    $query = "SELECT id FROM UserTable WHERE Phone==";
+    $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
+    $sth = $pdo->query($query);
+    $sth->setFetchMode(PDO::FETCH_NUM);
+    $data = $sth->fetchAll();
+	$user_id = $data[0][0];
+?>
 <html>
 	<head>
 		<title>Verti by HTML5 UP</title>
@@ -71,7 +82,6 @@
 							
 							<?php
 							$sum = 0;
-							$user_id = 1;	//暫時用我自己
 							$pdo = new PDO('sqlite:alldata.db');
 							$query = "SELECT * FROM Cart WHERE user_id==$user_id";
 							$sth = $pdo->query($query);
