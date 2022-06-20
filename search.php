@@ -87,7 +87,10 @@
 					<v-row>
 						
 						<?php
+							$product_list=array();
+
 							foreach ($getProductData as $i => $value) {
+								array_push($product_list, $i);
 								$product_id = $value[0];
 								$product_name = $value[1];
 								$amount = $value[3];
@@ -99,8 +102,9 @@
 								<v-col
 									cols='12' lg='4' md='6' sm='12'
 								>
-									<a href='./product.php' onclick='"; $_SESSION[$browse]=$value[0]; echo "'>
-									<v-card outline>
+								<form id='search".$i."' name='search".$i."' class='search".$i."' action='./product.php' method='post'>
+									<v-card outline name='product".$i."' @click='choose(".$i.")'>
+										<input type='hidden' value='".$product_id."' name='productId'>
 										<img src='$picture_ref' alt='$picture_name' style='height: 120px'/>
 										<br>
 										$product_id<br>
@@ -109,11 +113,12 @@
 										剩餘數量$amount
 										<br>
 									</v-card>
-									</a>
+								</form>
 								</v-col>
 								";
-							};?>
+							};
 							
+						?>
 						
 					</v-row>
 			</div>
@@ -205,6 +210,10 @@ new Vue({
       }
     },
 	methods: {
+		choose:(i)=>{
+			search='search'+i;
+			document.forms[search].submit();
+		}
 	}
 });
 

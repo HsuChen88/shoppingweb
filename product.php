@@ -23,7 +23,7 @@
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
 ?>
 <?php
-	$product_id = $_SESSION['product_browse'];
+	$product_id = $_POST['productId'];
 	$pdo = new PDO('sqlite:alldata.db');
     $query = "SELECT * FROM Products WHERE id==$product_id";
     $sth = $pdo->query($query);
