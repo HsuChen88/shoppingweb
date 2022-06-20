@@ -134,7 +134,7 @@
 										<v-col cols='12' sm='2'></v-col>
 										<v-col cols='12' sm='2'>總金額:</v-col>
 										<v-col cols='12' sm='2'><?php echo $sum; ?></v-col>
-										<v-col cols='12' sm='2'><v-btn class="ma-2 white--text" color='rgb(16, 111, 179)' x-large id="checkoutBtn" <?php if ($nothing==1) echo "disabled" ?>>結帳</v-btn></v-col>
+										<v-col cols='12' sm='2'><v-btn class="ma-2 white--text" color='rgb(16, 111, 179)' x-large id="checkoutBtn" onclick="location.href='checkout.php';" <?php if ($nothing==1) echo "disabled" ?>>結帳</v-btn></v-col>
 									</v-row>
 							</table>
 				</div>
@@ -186,12 +186,12 @@
 		</v-app>
 
 		<!-- Scripts -->
-			<script language="javascript">
+			<!-- <script language="javascript">
 				const checkoutBtn = document.getElementById('checkoutBtn')
 				checkoutBtn.addEventListener('click', function () {
                     alert("anything");
-					// location.href='checkout.php';
-				});
+					location.href='checkout.php';
+				}); -->
 			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
