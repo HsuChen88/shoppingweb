@@ -125,7 +125,7 @@
 											<v-col cols='12' sm='2'>$product_name</v-col>
 											<v-col cols='12' sm='2'>$price</v-col>
 											<v-col cols='12' sm='2'>$amount</v-col>
-											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552'>刪除</v-btn></v-col>
+											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552' onclick='delBtnFunc($product_id)'>刪除</v-btn></v-col>
 											</v-row>";
 										}
 									}?>
@@ -201,6 +201,14 @@
 			<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+			<script>
+				function delBtnFunc(_product_id) {
+					_product_id = $_product_id
+					var addCart = "<?php delItem(); ?>"
+					alert("刪除商品(但其實還沒刪除)");
+				}
+			</script>
 
 <script>
 

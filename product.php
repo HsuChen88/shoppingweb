@@ -17,7 +17,6 @@
 			$member = $getName[0][0];
 		}
 	}
-    
 
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
@@ -37,43 +36,6 @@
 	$productPrice = $getProductData[0][4];
 	$productImage = $getProductData[0][5];
 	$productDescription = $getProductData[0][6];
-?>
-<?php
-	function addToCart(){
-		if ($user_id == "") {
-			echo '<script language="javascript">';
-			echo "alert(\"請先登入會員!\");";
-			echo "location.href='product.php';";
-			echo "</script>";
-		}
-		else {
-		// 	// $user_id = 1;	//暫時用我自己
-
-		// 	// $pdo = new PDO('sqlite:alldata.db');
-		// 	// $query = "SELECT id FROM Products WHERE id==1";
-		// 	// $sth = $pdo->query($query);
-		// 	// $sth->setFetchMode(PDO::FETCH_NUM);
-		// 	// $productData = $sth->fetchAll();
-		// 	// $product_id = $productData[0][0];
-			
-		// 	$pdo = new PDO('sqlite:alldata.db');
-		// 	$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
-		// 	$sth = $pdo->query($query);
-		// 	$sth->setFetchMode(PDO::FETCH_NUM);
-		// 	$getCartData = $sth->fetchAll();
-		// 	$amount = $getCartData[0][0];
-		// 	if ($amount > 0) {
-		// 		$amount += 1;
-		// 		$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE user_id==$user_id AND product_id==$product_id");
-		// 		$sth->execute();
-		// 	}
-		// 	else {
-		// 		$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$user_id','$product_id',1)");
-		// 		$sth->execute();
-		// 	}
-			echo "product added.";
-		}
-	}
 ?>
 
 <html>
@@ -173,14 +135,28 @@
 
 			
 			<div id='sticky'>
-				<h3>價格：<?php echo $productPrice ?></h3>
-				<v-btn class="ma-2 white--text" color='rgb(255, 59, 76)' x-large id="addToCartBtn" onclick="Add()">加入購物車</v-btn>
-				<script>
-					function Add() {
-						var addCart = "<?php addToCart(); ?>"
-						console.log(addCart);
-					};
-				</script>
+				<v-row>
+				<v-col cols="12" lg="12">
+					<h4><?php echo $productName ?></h4>
+				</v-col>
+				</v-row>
+				<form action="./addToCart.php" method="post">
+						<input type="hidden" value="<?php echo $user_id ?>" name="userId">
+						<input type="hidden" value="<?php echo $product_id ?>" name="productId">
+					<v-row>
+					<v-col cols="12" lg="5" sm="2">
+						<label>價格：</label>
+						<input type="text" value="<?php echo $productPrice ?>" disabled="disabled" name="productPrice">
+					</v-col>
+					<v-col cols="12" lg="3">
+						<label>數量：</label>
+						<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="productAmount">
+					</v-col>
+					<v-col cols="12" lg="4">
+						<v-btn type="submit" id="addCart" color="red" @click="addToCart">加入購物車</v-btn>
+					</v-col>
+					</v-row>
+				</form>
 				
 			</div>
 			
