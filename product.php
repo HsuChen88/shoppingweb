@@ -1,21 +1,23 @@
 <?php
 	session_start();
-
-    $pdo = new PDO('sqlite:alldata.db');
-    $query = "SELECT id FROM UserTable WHERE Phone==";
-    $query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
-    $sth = $pdo->query($query);
-    $sth->setFetchMode(PDO::FETCH_NUM);
-    $getUserData = $sth->fetchAll();
-	if ($getUserData[0] != FALSE) {
-		$user_id = $getUserData[0][0];
-	 
-		$query = "SELECT Name FROM UserTable WHERE id==$user_id";
+	if (isset($_COOKIE["user_id_cookie"])) {
+		$pdo = new PDO('sqlite:alldata.db');
+		$query = "SELECT id FROM UserTable WHERE Phone==";
+		$query = $query."\"".$_COOKIE["user_id_cookie"]."\"";
 		$sth = $pdo->query($query);
 		$sth->setFetchMode(PDO::FETCH_NUM);
-		$getName = $sth->fetchAll();
-		$member = $getName[0][0];
+		$getUserData = $sth->fetchAll();
+		if ($getUserData[0] != FALSE) {
+			$user_id = $getUserData[0][0];
+		
+			$query = "SELECT Name FROM UserTable WHERE id==$user_id";
+			$sth = $pdo->query($query);
+			$sth->setFetchMode(PDO::FETCH_NUM);
+			$getName = $sth->fetchAll();
+			$member = $getName[0][0];
+		}
 	}
+    
 
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
@@ -28,6 +30,7 @@
     $sth = $pdo->query($query);
     $sth->setFetchMode(PDO::FETCH_NUM);
     $getProductData = $sth->fetchAll();
+
 	$productName = $getProductData[0][1];
 	$productCategory = $getProductData[0][2];
 	$productAmount = $getProductData[0][3];
@@ -35,6 +38,44 @@
 	$productImage = $getProductData[0][5];
 	$productDescription = $getProductData[0][6];
 ?>
+<?php
+	function addToCart(){
+		if ($user_id == "") {
+			echo '<script language="javascript">';
+			echo "alert(\"請先登入會員!\");";
+			echo "location.href='product.php';";
+			echo "</script>";
+		}
+		else {
+		// 	// $user_id = 1;	//暫時用我自己
+
+		// 	// $pdo = new PDO('sqlite:alldata.db');
+		// 	// $query = "SELECT id FROM Products WHERE id==1";
+		// 	// $sth = $pdo->query($query);
+		// 	// $sth->setFetchMode(PDO::FETCH_NUM);
+		// 	// $productData = $sth->fetchAll();
+		// 	// $product_id = $productData[0][0];
+			
+		// 	$pdo = new PDO('sqlite:alldata.db');
+		// 	$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
+		// 	$sth = $pdo->query($query);
+		// 	$sth->setFetchMode(PDO::FETCH_NUM);
+		// 	$getCartData = $sth->fetchAll();
+		// 	$amount = $getCartData[0][0];
+		// 	if ($amount > 0) {
+		// 		$amount += 1;
+		// 		$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE user_id==$user_id AND product_id==$product_id");
+		// 		$sth->execute();
+		// 	}
+		// 	else {
+		// 		$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$user_id','$product_id',1)");
+		// 		$sth->execute();
+		// 	}
+			echo "product added.";
+		}
+	}
+?>
+
 <html>
 	<head>
 		<title>楊東翰</title>
@@ -45,7 +86,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 		<script src="https://kit.fontawesome.com/be03ab0af6.js" crossorigin="anonymous"></script>
-
+		<script>add_flag = 0</script>
 
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<link rel="stylesheet" href="./assets/css/header.css" />
@@ -133,7 +174,14 @@
 			
 			<div id='sticky'>
 				<h3>價格：<?php echo $productPrice ?></h3>
-				<h5>又怎麼了啊這隊友 叔叔！！！！ 叔叔開剁！！！ 瑞斯一打五！！！ 開！剁！ 不要跑！！！給我回來！ 誇抓kill！嘿嘿！ 還敢下來啊？冰鳥 555555555555 55555555555555555555555555555555555喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔喔 太舒服啦！！ 還他媽想給我卡牆？啊？ 這一次總讓我他媽糗到你了吧 還敢下來啊！ 瑞斯一打五 AAAAAAAA 這個角度夠好了吧 一個拉四個啊 實在舒服！ 你們剛剛有看到那個極靈嗎？ 還想開大絕啊 我直接一個W他直接起飛欸 太神啦叔叔 喔那ad在幹洨啊？ 故意的是不是啊</h2>
+				<v-btn class="ma-2 white--text" color='rgb(255, 59, 76)' x-large id="addToCartBtn" onclick="Add()">加入購物車</v-btn>
+				<script>
+					function Add() {
+						var addCart = "<?php addToCart(); ?>"
+						console.log(addCart);
+					};
+				</script>
+				
 			</div>
 			
 			<div id="footer">
@@ -186,6 +234,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-sticky-position@2.0.0/dist/sticky.min.js"></script>
+
 
 <script>
 
