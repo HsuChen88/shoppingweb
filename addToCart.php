@@ -29,7 +29,7 @@
 			
             echo '<script>
             alert("成功加入購物車!");
-            location.href = "./product.php";
+            location.href = "./search.php";
             </script>';
 		}
 ?>
