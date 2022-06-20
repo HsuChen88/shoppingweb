@@ -39,23 +39,15 @@
 ?>
 <?php
 	function ToCart(){
+		echo 'alert("幹!");';
 		$user_id=2;
-		$product_id=3;
+		$product_id=5;
 		if ($user_id == "") {
 			echo 'alert("請先登入會員!");';
 		}
-		else {
-			// $user_id = 1;	//暫時用我自己
-
-			// $pdo = new PDO('sqlite:alldata.db');
-			// $query = "SELECT id FROM Products WHERE id==1";
-			// $sth = $pdo->query($query);
-			// $sth->setFetchMode(PDO::FETCH_NUM);
-			// $productData = $sth->fetchAll();
-			// $product_id = $productData[0][0];
-			
+		else {			
 			$pdo = new PDO('sqlite:alldata.db');
-			$query = "SELECT amount FROM Cart WHERE user_id=$user_id AND product_id=$product_id";
+			$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
 			$sth = $pdo->query($query);
 			$sth->setFetchMode(PDO::FETCH_NUM);
 			$getCartData = $sth->fetchAll();
@@ -70,7 +62,7 @@
 				$sth->execute();
 			}
 			
-		echo 'alert("成功加入購物車!");'.$amount;
+		echo 'alert("成功加入購物車!");';
 		}
 	}
 ?>
@@ -119,7 +111,6 @@
 								{{ tag }}
 								</v-chip>
 							</v-chip-group>
-							{{input}}
 						</div>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
