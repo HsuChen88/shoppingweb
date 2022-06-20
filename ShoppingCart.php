@@ -21,6 +21,20 @@
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
 ?>
+<?php
+	if (isset($_POST['productID'])) {
+		delItem();
+	}
+	function delItem() {
+		$_product_id = $_POST['productID'];
+		echo $_product_id;
+		$pdo = new PDO('sqlite:alldata.db');
+        $sth = $pdo->prepare("DELETE FROM Cart WHERE user_id==$user_id AND product_id==$_product_id");
+        $sth->execute();
+		echo "del";
+	}
+?>
+
 <html>
 	<head>
 		<title>購物車</title>
@@ -125,10 +139,16 @@
 											<v-col cols='12' sm='2'>$product_name</v-col>
 											<v-col cols='12' sm='2'>$price</v-col>
 											<v-col cols='12' sm='2'>$amount</v-col>
-											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552' onclick='delBtnFunc($product_id)'>刪除</v-btn></v-col>
-											</v-row>";
+											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552' @click='delBtnFunc(".$product_id.")'>刪除</v-btn></v-col>
+											</v-row>
+											<form id='func".$product_id."' name='func".$product_id."' class='func".$product_id."' action='./test.php' method='post'>
+												<input type='hidden' value='".$product_id."' name='productId'>
+											</form>";
 										}
+										
 									}?>
+
+									
 									<v-row>
 										<v-col cols='12' sm='4'></v-col>
 										<v-col cols='12' sm='2'></v-col>
@@ -186,12 +206,7 @@
 		</v-app>
 
 		<!-- Scripts -->
-			<!-- <script language="javascript">
-				const checkoutBtn = document.getElementById('checkoutBtn')
-				checkoutBtn.addEventListener('click', function () {
-                    alert("anything");
-					location.href='checkout.php';
-				}); -->
+			
 			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -202,68 +217,64 @@
 			<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
 			<script>
-				function delBtnFunc(_product_id) {
-					_product_id = $_product_id
-					var addCart = "<?php delItem(); ?>"
-					alert("刪除商品(但其實還沒刪除)");
+
+			new Vue({
+				el:'#app',
+				vuetify: new Vuetify(),
+				data () {
+				return {
+					colors: [
+						'indigo',
+						'warning',
+						'pink darken-2',
+						'red lighten-1',
+						'deep-purple accent-4',
+					],
+					slides: [
+						'First',
+						'Second',
+						'Third',
+						'Fourth',
+						'Fifth',
+					],
+					tags: [
+						'青軸',
+						'紅軸',
+						'無線',
+						'RGB',
+						'80 %',
+						'65 %',
+						'PBT',
+						'英文鍵帽'
+					],
+					items: [
+						{
+							src: './product_img/rog_flare2_2.jpg',
+						},
+						{
+							src: './product_img/razer_pro_typeultra_white_yellow_en.jpg',
+						},
+						{
+							src: './product_img/msi_gk71_red_2.jpg',
+						},
+						{
+							src: './product_img/filco_104_2.jpg',
+						}
+					]
 				}
+				},
+				methods: {
+					delBtnFunc:(i)=>{
+							// func_num='func'+i;
+							// document.forms[func_num].submit();
+						}
+					}
+				});
+
+
 			</script>
-
-<script>
-
-new Vue({
-	el:'#app',
-	vuetify: new Vuetify(),
-	data () {
-      return {
-        colors: [
-			'indigo',
-			'warning',
-			'pink darken-2',
-			'red lighten-1',
-			'deep-purple accent-4',
-        ],
-        slides: [
-			'First',
-			'Second',
-			'Third',
-			'Fourth',
-			'Fifth',
-        ],
-		tags: [
-			'青軸',
-			'紅軸',
-			'無線',
-			'RGB',
-			'80 %',
-			'65 %',
-			'PBT',
-			'英文鍵帽'
-		],
-		items: [
-			{
-				src: './product_img/rog_flare2_2.jpg',
-			},
-			{
-				src: './product_img/razer_pro_typeultra_white_yellow_en.jpg',
-			},
-			{
-				src: './product_img/msi_gk71_red_2.jpg',
-			},
-			{
-				src: './product_img/filco_104_2.jpg',
-			}
-		]
-      }
-    },
-	methods: {
-	}
-
-});
-
-
-</script>
 
 	</body>
 </html>
