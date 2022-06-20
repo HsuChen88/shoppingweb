@@ -135,16 +135,29 @@
 
 			
 			<div id='sticky'>
-				<h4><?php echo $productName ?></h4>
+				<v-row>
+				<v-col cols="12" lg="12">
+					<h4><?php echo $productName ?></h4>
+				</v-col>
+				</v-row>
 				<form action="./addToCart.php" method="post">
-					<input type="hidden" value="<?php echo $user_id ?>" name="userId">
-					<input type="hidden" value="<?php echo $product_id ?>" name="productId">
-					<label>價格：</label>
-					<input type="text" value="<?php echo $productPrice ?>" disabled="disabled" name="productPrice">
-					<label>數量：</label>
-					<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="productAmount">
-					<v-btn type="submit" id="addCart" color="red" @click="addToCart">加入購物車</v-btn>
+						<input type="hidden" value="<?php echo $user_id ?>" name="userId">
+						<input type="hidden" value="<?php echo $product_id ?>" name="productId">
+					<v-row>
+					<v-col cols="12" lg="5" sm="2">
+						<label>價格：</label>
+						<input type="text" value="<?php echo $productPrice ?>" disabled="disabled" name="productPrice">
+					</v-col>
+					<v-col cols="12" lg="3">
+						<label>數量：</label>
+						<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="productAmount">
+					</v-col>
+					<v-col cols="12" lg="4">
+						<v-btn type="submit" id="addCart" color="red" @click="addToCart">加入購物車</v-btn>
+					</v-col>
+					</v-row>
 				</form>
+				
 			</div>
 			
 			<div id="footer">
