@@ -137,8 +137,8 @@
 			<div id='sticky'>
 				<h4><?php echo $productName ?></h4>
 				<form action="./addToCart.php" method="post">
-					<label>Id：</label>
-					<input type="text" value="<?php echo $product_id ?>" disabled="disabled" name="productId">
+					<input type="hidden" value="<?php echo $user_id ?>" name="userId">
+					<input type="hidden" value="<?php echo $product_id ?>" name="productId">
 					<label>價格：</label>
 					<input type="text" value="<?php echo $productPrice ?>" disabled="disabled" name="productPrice">
 					<label>數量：</label>

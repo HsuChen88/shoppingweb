@@ -1,11 +1,13 @@
 <?php
-    function ToCart(){
-		$user_id=2;
-		$product_id=3;
-		if ($user_id == "") {
-			echo '<script>alert("請先登入會員!");</script>';
-		}
-		else {
+	$user_id=$_POST['userId'];
+	$product_id=$_POST['productId'];
+    $product_price=$_POST['productPrice'];
+    $product_amount=$_POST['productAmount'];
+    
+	    if ($user_id == "") {
+		    echo '<script>alert("請先登入會員!");</script>';
+	    }
+	    else {
 			$pdo = new PDO('sqlite:alldata.db');
 			$query = "SELECT amount FROM Cart WHERE user_id=$user_id AND product_id=$product_id";
 			$sth = $pdo->query($query);
