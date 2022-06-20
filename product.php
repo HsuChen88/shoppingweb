@@ -17,7 +17,6 @@
 			$member = $getName[0][0];
 		}
 	}
-    
 
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
@@ -39,39 +38,39 @@
 	$productDescription = $getProductData[0][6];
 ?>
 <?php
-	function addToCart(){
+	function ToCart(){
+		$user_id=2;
+		$product_id=3;
 		if ($user_id == "") {
-			echo '<script language="javascript">';
-			echo "alert(\"請先登入會員!\");";
-			echo "location.href='product.php';";
-			echo "</script>";
+			echo 'alert("請先登入會員!");';
 		}
 		else {
-		// 	// $user_id = 1;	//暫時用我自己
+			// $user_id = 1;	//暫時用我自己
 
-		// 	// $pdo = new PDO('sqlite:alldata.db');
-		// 	// $query = "SELECT id FROM Products WHERE id==1";
-		// 	// $sth = $pdo->query($query);
-		// 	// $sth->setFetchMode(PDO::FETCH_NUM);
-		// 	// $productData = $sth->fetchAll();
-		// 	// $product_id = $productData[0][0];
+			// $pdo = new PDO('sqlite:alldata.db');
+			// $query = "SELECT id FROM Products WHERE id==1";
+			// $sth = $pdo->query($query);
+			// $sth->setFetchMode(PDO::FETCH_NUM);
+			// $productData = $sth->fetchAll();
+			// $product_id = $productData[0][0];
 			
-		// 	$pdo = new PDO('sqlite:alldata.db');
-		// 	$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
-		// 	$sth = $pdo->query($query);
-		// 	$sth->setFetchMode(PDO::FETCH_NUM);
-		// 	$getCartData = $sth->fetchAll();
-		// 	$amount = $getCartData[0][0];
-		// 	if ($amount > 0) {
-		// 		$amount += 1;
-		// 		$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE user_id==$user_id AND product_id==$product_id");
-		// 		$sth->execute();
-		// 	}
-		// 	else {
-		// 		$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,'$user_id','$product_id',1)");
-		// 		$sth->execute();
-		// 	}
-			echo "product added.";
+			$pdo = new PDO('sqlite:alldata.db');
+			$query = "SELECT amount FROM Cart WHERE user_id=$user_id AND product_id=$product_id";
+			$sth = $pdo->query($query);
+			$sth->setFetchMode(PDO::FETCH_NUM);
+			$getCartData = $sth->fetchAll();
+			$amount = $getCartData[0][0];
+			if ($amount > 0) {
+				$amount += 1;
+				$sth = $pdo->prepare("UPDATE Cart SET amount=$amount WHERE user_id==$user_id AND product_id==$product_id");
+				$sth->execute();
+			}
+			else {
+				$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,$user_id,$product_id,1)");
+				$sth->execute();
+			}
+			
+		echo 'alert("成功加入購物車!");'.$amount;
 		}
 	}
 ?>
@@ -174,14 +173,7 @@
 			
 			<div id='sticky'>
 				<h3>價格：<?php echo $productPrice ?></h3>
-				<v-btn class="ma-2 white--text" color='rgb(255, 59, 76)' x-large id="addToCartBtn" onclick="Add()">加入購物車</v-btn>
-				<script>
-					function Add() {
-						var addCart = "<?php addToCart(); ?>"
-						console.log(addCart);
-					};
-				</script>
-				
+				<v-btn color="red" @click="addToCart">加入購物車</v-btn>
 			</div>
 			
 			<div id="footer">
@@ -266,6 +258,9 @@ new Vue({
       }
     },
 	methods: {
+		addToCart:()=>{
+			<?php ToCart(); ?>;
+		}	
 	}
 });
 
