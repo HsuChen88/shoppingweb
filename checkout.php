@@ -45,16 +45,16 @@
         $productData = $sth->fetchAll();
         $product_amount = $productData[0][0];
         $product_amount -= $amount;
-        var_dump($tmp);
+        // var_dump($tmp);
         
         // 扣掉庫存商品數
         $sth = $pdo->prepare("UPDATE Products SET amount=$product_amount WHERE id=$product_id;");
         $sth->execute();
 
-        echo "user_id".$user_id."<br>";
-        echo "product_id".$product_id."<br>";
-        echo "product_amount".$product_amount."<br>";
-        echo "amount".$amount."<br>";
+        // echo "user_id".$user_id."<br>";
+        // echo "product_id".$product_id."<br>";
+        // echo "product_amount".$product_amount."<br>";
+        // echo "amount".$amount."<br>";
         // 刪除購物車內容
         $pdo = new PDO('sqlite:alldata.db');
         $sth = $pdo->prepare("DELETE FROM Cart WHERE user_id=$user_id");
