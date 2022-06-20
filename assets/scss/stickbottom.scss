@@ -16,3 +16,17 @@
     bottom: 0;
 
 }
+
+input[type=text]{
+    padding-right: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+  padding-right: 20px;
+}
+
+#addCart{
+    margin-left: 50px;
+}

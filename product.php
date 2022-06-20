@@ -37,35 +37,6 @@
 	$productImage = $getProductData[0][5];
 	$productDescription = $getProductData[0][6];
 ?>
-<?php
-	function ToCart(){
-		echo 'alert("幹!");';
-		$user_id=2;
-		$product_id=5;
-		if ($user_id == "") {
-			echo 'alert("請先登入會員!");';
-		}
-		else {			
-			$pdo = new PDO('sqlite:alldata.db');
-			$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
-			$sth = $pdo->query($query);
-			$sth->setFetchMode(PDO::FETCH_NUM);
-			$getCartData = $sth->fetchAll();
-			$amount = $getCartData[0][0];
-			if ($amount > 0) {
-				$amount += 1;
-				$sth = $pdo->prepare("UPDATE Cart SET amount=$amount WHERE user_id==$user_id AND product_id==$product_id");
-				$sth->execute();
-			}
-			else {
-				$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,$user_id,$product_id,1)");
-				$sth->execute();
-			}
-			
-		echo 'alert("成功加入購物車!");';
-		}
-	}
-?>
 
 <html>
 	<head>
@@ -111,6 +82,7 @@
 								{{ tag }}
 								</v-chip>
 							</v-chip-group>
+							{{input}}
 						</div>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -163,8 +135,16 @@
 
 			
 			<div id='sticky'>
-				<h3>價格：<?php echo $productPrice ?></h3>
-				<v-btn color="red" @click="addToCart">加入購物車</v-btn>
+				<h4><?php echo $productName ?></h4>
+				<form action="./addToCart.php" method="post">
+					<label>Id：</label>
+					<input type="text" value="<?php echo $product_id ?>" disabled="disabled" name="productId">
+					<label>價格：</label>
+					<input type="text" value="<?php echo $productPrice ?>" disabled="disabled" name="productPrice">
+					<label>數量：</label>
+					<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="productAmount">
+					<v-btn type="submit" id="addCart" color="red" @click="addToCart">加入購物車</v-btn>
+				</form>
 			</div>
 			
 			<div id="footer">
@@ -249,9 +229,6 @@ new Vue({
       }
     },
 	methods: {
-		addToCart:()=>{
-			<?php ToCart(); ?>;
-		}	
 	}
 });
 
