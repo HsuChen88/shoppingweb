@@ -23,14 +23,14 @@
 		$product_id = $productData[0][0];
 		
 		$pdo = new PDO('sqlite:alldata.db');
-		$query = "SELECT amount FROM Cart WHERE product_id==$product_id";
+		$query = "SELECT amount FROM Cart WHERE user_id==$user_id AND product_id==$product_id";
 		$sth = $pdo->query($query);
 		$sth->setFetchMode(PDO::FETCH_NUM);
 		$getCartData = $sth->fetchAll();
 		$amount = $getCartData[0][0];
 		if ($amount > 0) {
 			$amount += 1;
-			$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE product_id==$product_id");
+			$sth = $pdo->prepare("UPDATE Cart SET amount='$amount' WHERE user_id==$user_id AND product_id==$product_id");
 			$sth->execute();
 		}
 		else {
@@ -91,10 +91,10 @@
 						<div id="content">
 
 							<!-- Content -->
-							<button id="getproductBtn">加入購物車</button>
+							<button id="addToCartBtn">加入購物車</button>
 							<script language="javascript">
-								const loginBtn = document.getElementById('getproductBtn')
-								loginBtn.addEventListener('click', function () {
+								const addToCartBtn = document.getElementById('addToCartBtn')
+								addToCartBtn.addEventListener('click', function () {
 									var addCart = "<?php addToCart(); ?>"
 									console.log(addCart);
 								});
