@@ -77,7 +77,7 @@
 
 			<div id="main">
 				<v-card class="container">
-                    <form class="login" method="POST" action="adduser.php">
+                    <form class="login" method="POST" action="condition.php">
                         <h1>加入會員</h1><br>
                         <h2>使用者名稱</h2>
                         <input type="text" id="userdata" name="name" placeholder="user"/><br>

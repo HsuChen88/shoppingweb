@@ -76,7 +76,7 @@
 
 			<div id="main">
 				<v-card class="container">
-					<form class="login" method="POST" action="login-check.php">
+					<form class="login" method="POST" action="condition.php">
 						<h1>登入</h1><br>
 						<h2>手機號碼</h2>
 						<input type="text" id="content" name="phone"/><br><br>
