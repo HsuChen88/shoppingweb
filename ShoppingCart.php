@@ -20,18 +20,12 @@
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
-?>
-<?php
+
 	if (isset($_POST['productID'])) {
-		delItem();
-	}
-	function delItem() {
 		$_product_id = $_POST['productID'];
-		echo $_product_id;
 		$pdo = new PDO('sqlite:alldata.db');
         $sth = $pdo->prepare("DELETE FROM Cart WHERE user_id==$user_id AND product_id==$_product_id");
         $sth->execute();
-		echo "del";
 	}
 ?>
 
@@ -141,11 +135,10 @@
 											<v-col cols='12' sm='2'>$amount</v-col>
 											<v-col cols='12' sm='2'><v-btn class='btn' color='#fb5552' @click='delBtnFunc(".$product_id.")'>刪除</v-btn></v-col>
 											</v-row>
-											<form id='func".$product_id."' name='func".$product_id."' class='func".$product_id."' action='./test.php' method='post'>
-												<input type='hidden' value='".$product_id."' name='productId'>
-											</form>";
+											<v-form id='func".$product_id."' name='func".$product_id."' class='func".$product_id."' action='./ShoppingCart.php' method='POST'>
+												<input type='hidden' value='".$product_id."' name='productID'>
+											</v-form>";
 										}
-										
 									}?>
 
 									
@@ -267,8 +260,8 @@
 				},
 				methods: {
 					delBtnFunc:(i)=>{
-							// func_num='func'+i;
-							// document.forms[func_num].submit();
+							func_num='func'+i;
+							document.forms[func_num].submit();
 						}
 					}
 				});
