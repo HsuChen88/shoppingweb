@@ -150,10 +150,11 @@
 					</v-col>
 					<v-col cols="12" lg="3">
 						<label>數量：</label>
-						<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="productAmount">
+						<input type="number" min="1" max="<?php echo $productAmount ?>" placeholder="1" name="addAmount">
+					<?php	// value只有1 id要確認 	?>
 					</v-col>
 					<v-col cols="12" lg="4">
-						<v-btn type="submit" id="addCart" color="red" @click="addToCart">加入購物車</v-btn>
+						<v-btn type="submit" id="addCart" color="red" @click="location.href='addToCart.php';">加入購物車</v-btn>
 					</v-col>
 					</v-row>
 				</form>

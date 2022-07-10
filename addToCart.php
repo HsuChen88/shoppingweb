@@ -2,7 +2,7 @@
 	$user_id=$_POST['userId'];
 	$product_id=$_POST['productId'];
     $product_price=$_POST['productPrice'];
-    $product_amount=$_POST['productAmount'];
+    $add_amount=$_POST['addAmount'];
     
 	    if ($user_id == "") {
 		    echo '<script>
@@ -18,12 +18,12 @@
 			$getCartData = $sth->fetchAll();
 			$amount = $getCartData[0][0];
 			if ($amount > 0) {
-				$amount += $product_amount;
+				$amount += $add_amount;
 				$sth = $pdo->prepare("UPDATE Cart SET amount=$amount WHERE user_id==$user_id AND product_id==$product_id");
 				$sth->execute();
 			}
 			else {
-				$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,$user_id,$product_id,1)");
+				$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,$user_id,$product_id,$add_amount)");
 				$sth->execute();
 			}
 			
