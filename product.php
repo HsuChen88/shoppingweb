@@ -62,7 +62,7 @@
 				$sth->execute();
 			}
 			$add_amount = "";
-			
+
             echo '<script>
             alert("成功加入購物車!")';
 			echo'</script>';
@@ -157,7 +157,10 @@
 								</div>
 								<v-card elevation="0" text-align="left" class="blue--text"><h1>$<?php echo $productPrice ?></h1><br></v-card>
 								<h4>剩餘數量：<?php echo $productAmount ?></h4><br>
-							    <h4>產品介紹：<?php echo $productDescription ?></h4>
+							    <h4 style="text-align:left; margin-left: 110px;">產品介紹：</h4><br>
+								<ul style="text-align:left; margin-left: 130px;">
+									<?php echo $productDescription ?>
+								</ul>
 						</v-col>
 					</v-row>
 

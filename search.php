@@ -15,6 +15,7 @@
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
 
 	$browse='product_browse';
+	$keyword = $_GET['search'];
 ?>
 <html>
 	<head>
@@ -42,10 +43,10 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12">
-						<form action="search.php" methods="POST">
-							<input type="text" placeholder="Search.." id="search"/>
+						<v-form action="search.php" methods="GET">
+							<input type="text" placeholder="Search.." <?php if ($keyword!="") echo "value='".$keyword."'" ?> id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
-						</form>
+						</v-form>
 						<div>
 							<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primary--text"
@@ -79,7 +80,16 @@
 			<div id="main">
 					<?php
 						$pdo = new PDO('sqlite:alldata.db');
-						$query = "SELECT * FROM Products";
+						if ($keyword != "") {
+							$search_key = $keyword;
+							$query =  "SELECT * FROM Products WHERE product_name LIKE '%";
+							$query = $query.$search_key;
+							$query = $query."%'";
+						}
+						else {
+							$query =  "SELECT * FROM Products";
+						}
+						
 						$sth = $pdo->query($query);
 						$sth->setFetchMode(PDO::FETCH_NUM);
 						$getProductData = $sth->fetchAll();

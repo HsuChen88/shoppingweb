@@ -39,10 +39,10 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12" >
-						<form action="search.php" methods="POST">
+						<v-form action="search.php" methods="GET">
 							<input type="text" placeholder="Search.." id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
-						</form>
+						</v-form>
 						<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primmary--text"
 							column
