@@ -36,6 +36,38 @@
 	$productPrice = $getProductData[0][4];
 	$productImage = $getProductData[0][5];
 	$productDescription = $getProductData[0][6];
+
+	$add_amount=$_POST['addAmount'];
+	if (isset($add_amount)) {
+	    if ($user_id == "") {
+		    echo '<script>
+            alert("請先登入會員!");
+            location.href = "./login.php";
+            </script>';
+	    }
+	    else {
+			$pdo = new PDO('sqlite:alldata.db');
+			$query = "SELECT amount FROM Cart WHERE user_id=$user_id AND product_id=$product_id";
+			$sth = $pdo->query($query);
+			$sth->setFetchMode(PDO::FETCH_NUM);
+			$getCartData = $sth->fetchAll();
+			$amount = $getCartData[0][0];
+			if ($amount > 0) {
+				$amount += $add_amount;
+				$sth = $pdo->prepare("UPDATE Cart SET amount=$amount WHERE user_id==$user_id AND product_id==$product_id");
+				$sth->execute();
+			}
+			else {
+				$sth = $pdo->prepare("INSERT INTO Cart VALUES(NULL,$user_id,$product_id,$add_amount)");
+				$sth->execute();
+			}
+			$add_amount = "";
+			
+            echo '<script>
+            alert("成功加入購物車!")';
+			echo'</script>';
+		}
+	}
 ?>
 
 <html>
@@ -140,7 +172,7 @@
 					<h4><?php echo $productName ?></h4>
 				</v-col>
 				</v-row>
-				<form action="./addToCart.php" method="post">
+				<form action="./product.php" method="post">
 						<input type="hidden" value="<?php echo $user_id ?>" name="userId">
 						<input type="hidden" value="<?php echo $product_id ?>" name="productId">
 					<v-row>
@@ -150,11 +182,10 @@
 					</v-col>
 					<v-col cols="12" lg="3">
 						<label>數量：</label>
-						<input type="number" min="1" max="<?php echo $productAmount ?>" placeholder="1" name="addAmount">
-					<?php	// value只有1 id要確認 	?>
+						<input type="number" min="1" max="<?php echo $productAmount ?>" value="1" name="addAmount">
 					</v-col>
 					<v-col cols="12" lg="4">
-						<v-btn type="submit" id="addCart" color="red" @click="location.href='addToCart.php';">加入購物車</v-btn>
+						<v-btn type="submit" id="addCart" color="red" @click="location.href='product.php';">加入購物車</v-btn>
 					</v-col>
 					</v-row>
 				</form>

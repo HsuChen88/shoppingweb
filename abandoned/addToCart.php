@@ -3,7 +3,7 @@
 	$product_id=$_POST['productId'];
     $product_price=$_POST['productPrice'];
     $add_amount=$_POST['addAmount'];
-    
+	if (isset($add_amount)) {
 	    if ($user_id == "") {
 		    echo '<script>
             alert("請先登入會員!");
@@ -29,7 +29,9 @@
 			
             echo '<script>
             alert("成功加入購物車!");
-            location.href = "./search.php";
+            location.href = "./product.php";
             </script>';
 		}
+	}
+
 ?>
