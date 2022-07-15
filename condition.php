@@ -3,11 +3,14 @@
         $dbName = 'sqlite:alldata.db';
 
         $pdo = new PDO($dbName);
-        $query = "SELECT $rowName FROM UserTable WHERE $rowName==$inputData";
+        $query = "SELECT ";
+        $query = $query.$rowName;
+        $query = $query." FROM UserTable WHERE ";
+        $query = $query.$rowName;
+        $query = $query." == '$inputData'";
         $sth = $pdo->query($query);
         $sth->setFetchMode(PDO::FETCH_NUM);
         $result = $sth->fetchAll();
-        var_dump($result);
         if ($result == False) {
             return FALSE;
         }
