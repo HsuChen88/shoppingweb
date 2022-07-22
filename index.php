@@ -29,6 +29,7 @@
 		<link rel="stylesheet" href="./assets/css/footer.css" />
 	</head>
 	<body class="is-preload homepage">
+	<p id="demo"></p>
 		<v-app id="app">
 			<v-main>
 			<div id="header">
@@ -39,7 +40,7 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12" >
-						<v-form action="search.php" methods="GET">
+						<v-form action="search.php" methods="GET" id="searchForm">
 							<input type="text" placeholder="Search.." id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</v-form>
@@ -50,6 +51,7 @@
 							<v-chip 
 								v-for="tag in tags"
 								:key="tag"
+								@click="fun()"
 							>
 								{{ tag }}
 							</v-chip>
@@ -97,7 +99,7 @@
 						</a>
 					</v-btn>
 					<v-btn class="mx-4 white--text" icon>
-						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<a href="https://www.instagram.com/hsuchen1023/" style="text-decoration: none" target="_blank">
 						<v-icon size="40px">
 							mdi-instagram
 						</v-icon>
@@ -107,14 +109,14 @@
 				<div class="information">
 					<h3>楊東倫<h3>
 					<v-btn class="mx-4 white--text" icon>
-						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<a href="https://www.facebook.com/profile.php?id=100023998800521" style="text-decoration: none" target="_blank">
 						<v-icon size="40px">
 							mdi-facebook
 						</v-icon>
 						</a>
 					</v-btn>
 					<v-btn class="mx-4 white--text" icon>
-						<a href="https://www.facebook.com/hsu.chen95763" style="text-decoration: none" target="_blank">
+						<a href="https://www.instagram.com/lun__0821/" style="text-decoration: none" target="_blank">
 						<v-icon size="40px">
 							mdi-instagram
 						</v-icon>
@@ -190,8 +192,14 @@ new Vue({
       }
     },
 	methods: {
+		fun: function() {
+			alert(tags);
+			// var x = document.getlementById("search").value;
+			// document.getElementById("demo").innerHTML = x;
+  			// x.setAttribute("value", "hi");
+			// document.forms[searchForm].submit();
+		}
 	}
-
 });
 
 
