@@ -69,10 +69,6 @@
         preg_match($phonePattern, $phone, $phoneMatches);
         preg_match($pwdLeastPattern, $password, $pwdLeastMatches);
         preg_match($pwdSamePattern, $password, $pwdSameMatches);
-
-        var_dump($phoneMatches);
-        var_dump($pwdLeastMatches);
-        var_dump($pwdSameMatches);
         
         // 確認電話號碼有無錯誤
         if ($phoneMatches == FALSE) {
