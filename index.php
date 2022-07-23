@@ -85,6 +85,60 @@
 					>
 					</v-carousel-item>
 				</v-carousel>
+
+				<?php
+					$pdo = new PDO('sqlite:alldata.db');
+					if ($keyword != "") {
+						$search_key = $keyword;
+						$query =  "SELECT * FROM Products WHERE product_name LIKE '%";
+						$query = $query.$search_key;
+						$query = $query."%'";
+					}
+					else {
+						$query =  "SELECT * FROM Products";
+					}
+					
+					$sth = $pdo->query($query);
+					$sth->setFetchMode(PDO::FETCH_NUM);
+					$getProductData = $sth->fetchAll();
+				?>
+				<v-row id="display-product">
+					
+					<?php
+						$product_list=array();
+
+						foreach ($getProductData as $i => $value) {
+							array_push($product_list, $i);
+							$product_id = $value[0];
+							$product_name = $value[1];
+							$amount = $value[3];
+							$price= $value[4];
+							$picture_name= $value[5];
+							$picture_ref = "./product_img/".$picture_name;
+
+							echo "
+							<v-col
+								cols='12' lg='4' md='6' sm='12'
+							>
+							<form id='search".$i."' name='search".$i."' class='search".$i."' action='./product.php' method='post'>
+								<v-card outline name='product".$i."' @click='choose(".$i.")'>
+									<input type='hidden' value='".$product_id."' name='productId'>
+									<img src='$picture_ref' alt='$picture_name' style='height: 120px'/>
+									<br>
+									$product_id<br>
+									$product_name<br>
+									價格$price<br>
+									剩餘數量$amount
+									<br>
+								</v-card>
+							</form>
+							</v-col>
+							";
+						};
+						
+					?>
+						
+				</v-row>
 			</div>
 
 			<div id="footer">
@@ -191,6 +245,10 @@ new Vue({
       }
     },
 	methods: {
+		choose:(i)=>{
+			search='search'+i;
+			document.forms[search].submit();
+		},
 		fun: function(key) {
 			var tagContent = document.getElementsByClassName("v-chip__content");
 			str = tagContent[key].innerHTML;
