@@ -24,7 +24,10 @@
         $password = $_POST['password'];
         
         if ($phone=="" || $password=="") {
-            header("Location:login.php");
+            echo '<script language="javascript">';
+            echo "alert(\"帳號或密碼空白\\n請再輸入一次!\");";
+            echo "location.href='login.php';";
+            echo "</script>";
         }
         $rowPhone = 'Phone';
         $rowPassword = 'password';
@@ -34,7 +37,7 @@
         echo $findAccount;
         if ($findAccount == FALSE) {
             echo '<script language="javascript">';
-            echo "alert(\"查無此帳號..\\n請再輸入一次或先加入會員\");";
+            echo "alert(\"查無此帳號..\\n請再輸入一次或先加入會員!\");";
             echo "location.href='login.php';";
             echo "</script>";
         }
