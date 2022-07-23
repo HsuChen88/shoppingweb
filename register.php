@@ -15,7 +15,7 @@
 ?>
 <html>
 	<head>
-		<title>楊東翰</title>
+		<title>加入會員</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -40,18 +40,19 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12">
-						<form action="search.php" methods="POST">
-							<input type="text" placeholder="Search.." id="search"/>
+						<v-form action="search.php" methods="GET" id="searchForm">
+							<input type="text" placeholder="Search.." id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
-						</form>
+						</v-form>
 						<div>
 							<v-chip-group
 							active-class="primary--text"
 							column
 							>
 								<v-chip class="bg-white"
-								v-for="tag in tags"
+								v-for="(tag, key) in tags"
 								:key="tag"
+								@click="fun( `${key}` )"
 								>
 								{{ tag }}
 								</v-chip>
@@ -174,16 +175,23 @@ new Vue({
 		tags: [
 			'青軸',
 			'紅軸',
+			'銀軸',
 			'無線',
 			'RGB',
-			'80 %',
-			'65 %',
-			'PBT',
+			'100%',
+			'60%',
 			'英文鍵帽'
 		]
       }
     },
 	methods: {
+		fun: function(key) {
+			var tagContent = document.getElementsByClassName("v-chip__content");
+			str = tagContent[key].innerHTML;
+			str = tagContent[key].innerHTML.replace(/\s/g, '');
+			document.getElementById("search").value = str;
+			document.getElementById("searchForm").submit();
+		}
 	}
 
 });

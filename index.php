@@ -16,7 +16,7 @@
 ?>
 <html>
 	<head>
-		<title>楊東翰</title>
+		<title>ShawningShop 鍵盤世界</title>
 		<meta charset="utf-8" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -29,7 +29,6 @@
 		<link rel="stylesheet" href="./assets/css/footer.css" />
 	</head>
 	<body class="is-preload homepage">
-	<p id="demo"></p>
 		<v-app id="app">
 			<v-main>
 			<div id="header">
@@ -49,9 +48,9 @@
 							column
 						>
 							<v-chip 
-								v-for="tag in tags"
+								v-for="(tag, key) in tags"
 								:key="tag"
-								@click="fun()"
+								@click="fun( `${key}` )"
 							>
 								{{ tag }}
 							</v-chip>
@@ -168,11 +167,11 @@ new Vue({
 		tags: [
 			'青軸',
 			'紅軸',
+			'銀軸',
 			'無線',
 			'RGB',
-			'80 %',
-			'65 %',
-			'PBT',
+			'100%',
+			'60%',
 			'英文鍵帽'
 		],
 		items: [
@@ -192,12 +191,12 @@ new Vue({
       }
     },
 	methods: {
-		fun: function() {
-			alert(tags);
-			// var x = document.getlementById("search").value;
-			// document.getElementById("demo").innerHTML = x;
-  			// x.setAttribute("value", "hi");
-			// document.forms[searchForm].submit();
+		fun: function(key) {
+			var tagContent = document.getElementsByClassName("v-chip__content");
+			str = tagContent[key].innerHTML;
+			str = tagContent[key].innerHTML.replace(/\s/g, '');
+			document.getElementById("search").value = str;
+			document.getElementById("searchForm").submit();
 		}
 	}
 });

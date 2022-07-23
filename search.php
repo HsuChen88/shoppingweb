@@ -19,7 +19,7 @@
 ?>
 <html>
 	<head>
-		<title>楊東翰</title>
+		<title>ShawningShop 鍵盤世界</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -43,7 +43,7 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12">
-						<v-form action="search.php" methods="GET">
+						<v-form action="search.php" methods="GET" id="searchForm">
 							<input type="text" placeholder="Search.." <?php if ($keyword!="") echo "value='".$keyword."'" ?> id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
 						</v-form>
@@ -52,13 +52,13 @@
 							active-class="primary--text"
 							column
 							>
-								<v-chip class="bg-white"
-								v-for="tag in tags"
+							<v-chip class="bg-white"
+								v-for="(tag, key) in tags"
 								:key="tag"
-								@click="fun()"
-								>
+								@click="fun( `${key}` )"
+							>
 								{{ tag }}
-								</v-chip>
+							</v-chip>
 							</v-chip-group>
 						</div>
 					</v-col>
@@ -208,11 +208,11 @@ new Vue({
 		tags: [
 			'青軸',
 			'紅軸',
+			'銀軸',
 			'無線',
 			'RGB',
-			'80 %',
-			'65 %',
-			'PBT',
+			'100%',
+			'60%',
 			'英文鍵帽'
 		],
 		allData:'',
@@ -224,8 +224,14 @@ new Vue({
 		choose:(i)=>{
 			search='search'+i;
 			document.forms[search].submit();
+		},
+		fun: function(key) {
+			var tagContent = document.getElementsByClassName("v-chip__content");
+			str = tagContent[key].innerHTML;
+			str = tagContent[key].innerHTML.replace(/\s/g, '');
+			document.getElementById("search").value = str;
+			document.getElementById("searchForm").submit();
 		}
-		// fun() 還沒做
 	}
 });
 

@@ -21,6 +21,8 @@
 	$register_logout_url = isset($_COOKIE["user_id_cookie"]) ? "./logout.php" : "./register.php";
 	$login_profile_url = isset($_COOKIE["user_id_cookie"]) ? "./profile.php" : "./login.php";
 	$cart_login_url = isset($_COOKIE["user_id_cookie"]) ? "./ShoppingCart.php" : "./login.php";
+
+	$keyword = $_GET['search'];
 ?>
 <?php
 	$product_id = $_POST['productId'];
@@ -73,7 +75,7 @@
 
 <html>
 	<head>
-		<title>楊東翰</title>
+		<title>ShawningShop 鍵盤世界</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -99,19 +101,19 @@
 						</a>
 					</v-col>
 					<v-col cols="12" lg="6" md="6" sm="12">
-						<form action="search.php" methods="POST">
-							<input type="text" placeholder="Search.." id="search"/>
+						<v-form action="search.php" methods="GET" id="searchForm">
+							<input type="text" placeholder="Search.." <?php if ($keyword!="") echo "value='".$keyword."'" ?> id="search" name="search"/>
 							<v-btn type="submit"><v-icon>mdi-magnify</v-icon></v-btn>
-						</form>
+						</v-form>
 						<div>
 							<v-chip-group style="margin-left: 60px; padding-left: 60px"
 							active-class="primary--text"
 							column
 							>
 								<v-chip class="bg-white"
-								v-for="tag in tags"
+								v-for="(tag, key) in tags"
 								:key="tag"
-								@click="fun()"
+								@click="fun( `${key}` )"
 								>
 								{{ tag }}
 								</v-chip>
@@ -272,11 +274,11 @@ new Vue({
 		tags: [
 			'青軸',
 			'紅軸',
+			'銀軸',
 			'無線',
 			'RGB',
-			'80 %',
-			'65 %',
-			'PBT',
+			'100%',
+			'60%',
 			'英文鍵帽'
 		],
 		allData:'',
@@ -285,7 +287,13 @@ new Vue({
       }
     },
 	methods: {
-		// fun() 還沒做
+		fun: function(key) {
+			var tagContent = document.getElementsByClassName("v-chip__content");
+			str = tagContent[key].innerHTML;
+			str = tagContent[key].innerHTML.replace(/\s/g, '');
+			document.getElementById("search").value = str;
+			document.getElementById("searchForm").submit();
+		}
 	}
 });
 
