@@ -48,7 +48,9 @@
             $_SESSION['user_id'] = $phone;
             $cookie_value = $_SESSION['user_id'];
             setcookie("user_id_cookie", $cookie_value, time() + (86400 * 7), "/");
-            header("Location:index.php");
+            echo '<script language="javascript">';
+            echo "location.href='index.php';";
+            echo "</script>";
         }
         else {
             echo '<script language="javascript">';
