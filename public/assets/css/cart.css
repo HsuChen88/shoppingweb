@@ -1,0 +1,154 @@
+/* Cart Page Styles */
+.cart-container {
+  width: 100%;
+}
+
+.cart-header {
+  background-color: #f5f5f5;
+  padding: 12px 0;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+  align-items: center;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-product-image {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.cart-item-name,
+.cart-item-price,
+.cart-item-amount {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.cart-label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #666;
+}
+
+.cart-item-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-delete-btn {
+  width: 100%;
+  max-width: 120px;
+}
+
+.cart-footer {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 2px solid #ddd;
+}
+
+.cart-total {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.total-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.total-amount {
+  font-size: 1.5rem;
+}
+
+.total-amount strong {
+  color: #e53935;
+  font-weight: 700;
+}
+
+.cart-checkout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.checkout-btn {
+  width: 100%;
+  max-width: 200px;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* RWD for Cart */
+@media screen and (max-width: 600px) {
+  .cart-item {
+    padding: 12px 0;
+  }
+  
+  .cart-product-image {
+    max-height: 100px;
+  }
+  
+  .cart-item-name,
+  .cart-item-price,
+  .cart-item-amount {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0;
+  }
+  
+  .cart-label {
+    margin-bottom: 4px;
+  }
+  
+  .cart-delete-btn {
+    max-width: 100%;
+  }
+  
+  .cart-total {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  
+  .cart-checkout {
+    justify-content: center;
+  }
+  
+  .checkout-btn {
+    max-width: 100%;
+  }
+  
+  .total-label {
+    font-size: 1.1rem;
+  }
+  
+  .total-amount {
+    font-size: 1.3rem;
+  }
+}
+

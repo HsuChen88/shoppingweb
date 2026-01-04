@@ -1,0 +1,50 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#main {
+  width: 70vw;
+  min-width: 600px;
+  min-height: 90%;
+  margin: auto;
+  margin-top: 60px;
+  padding: 0 20px;
+}
+
+/* RWD for #main */
+@media screen and (max-width: 960px) {
+  #main {
+    width: 90vw;
+    min-width: unset;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #main {
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 20px;
+  }
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #502d2c;
+  margin: 0;
+  background-color: white;
+}
+
+.layout-input {
+  border: 2px #8f9da7 groove;
+  border-radius: 3px;
+}
+
+#display-product {
+  margin-top: 60px;
+}
+/*# sourceMappingURL=style.css.map */
