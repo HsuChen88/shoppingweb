@@ -1,0 +1,65 @@
+# 資料庫檔案
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# 環境變數檔案
+.env
+.env.local
+.env.*.local
+.env.production
+
+# 依賴目錄
+/vendor/
+/node_modules/
+
+# 系統檔案
+.DS_Store
+Thumbs.db
+*.tmp
+~WRL*.tmp
+desktop.ini
+
+# IDE 設定檔
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# 上傳檔案（保留目錄結構，但忽略內容）
+/uploads/*
+!/uploads/.gitkeep
+/product_img/*.jpg
+/product_img/*.png
+/product_img/*.jpeg
+/product_img/*.gif
+!/product_img/.gitkeep
+
+# 日誌檔案
+*.log
+/logs/
+
+# 快取檔案
+/cache/
+*.cache
+
+# 測試覆蓋率報告
+/coverage/
+.phpunit.result.cache
+
+# Composer
+composer.lock
+
+# 備份檔案
+*.bak
+*.backup
+*~
+
+# 本地自動化測試檔案
+*.bat
