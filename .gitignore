@@ -63,3 +63,10 @@ composer.lock
 
 # 本地自動化測試檔案
 *.bat
+# 但允許專案批次檔
+!start-all.bat
+!stop-all.bat
+!start-nginx.bat
+!stop-nginx.bat
+!reload-nginx.bat
+!check-status.bat
