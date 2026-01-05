@@ -1,6 +1,13 @@
 # ShawningShop 鍵盤世界
 <img width="1405" height="1929" alt="購物網站主頁" src="https://github.com/user-attachments/assets/b3ca03e7-dae6-4661-a7dd-d9946589704d" />
 
+## 商品詳細介紹
+<img width="960" height="445" alt="購物網站4" src="https://github.com/user-attachments/assets/c48fd442-9590-495d-8d06-6ab001145cd5" />
+
+## 購物車
+<img width="960" height="450" alt="購物網站7" src="https://github.com/user-attachments/assets/f6a4949e-054f-425f-993b-7f330a49d42d" />
+
+
 ---
 
 ## 專案結構
@@ -70,7 +77,8 @@ shoppingweb/
 ├── stop-all.bat                  # 停止所有服務腳本
 ├── start-nginx.bat               # 啟動 Nginx 腳本
 ├── stop-nginx.bat                # 停止 Nginx 腳本
-└── reload-nginx.bat              # 重新載入 Nginx 設定腳本
+├── reload-nginx.bat              # 重新載入 Nginx 設定腳本
+└── check-status.bat              # 檢查服務狀態腳本
 ```
 
 ## 安裝與設定
@@ -90,9 +98,10 @@ cp env.example .env
 
 本專案使用 **Nginx** 作為 Web Server，搭配 **PHP-FPM** 處理 PHP 請求。
 
-#### 快速啟動（推薦）
+#### 快速啟動（管理員權限開啟"命令提示字元"）
 
 使用專案提供的批次檔快速啟動所有服務：
+> 若出現編碼錯誤，可以先輸入 `chcp 65001` 切換成中文。
 
 ```bash
 # 啟動所有服務（PHP-FPM + Nginx）
@@ -101,6 +110,65 @@ start-all.bat
 # 停止所有服務
 stop-all.bat
 ```
+
+#### 批次檔使用說明
+
+專案提供了多個批次檔來管理服務，以下是各批次檔的詳細說明：
+
+**`start-all.bat`** - 啟動所有服務
+- **功能**：同時啟動 PHP-FPM 和 Nginx 服務
+- **使用方式**：雙擊執行或在命令列中執行 `start-all.bat`
+- **說明**：
+  - 會先檢查 PHP 是否安裝在預設路徑（`C:\php-8.5.1-Win32-vs17-x64`）
+  - 如果 PHP 路徑不同，請修改批次檔中的 `PHP_PATH` 變數
+  - 啟動前會測試 Nginx 設定檔語法
+  - 啟動後服務會在背景執行，關閉視窗不會停止服務
+- **服務位置**：
+  - PHP-FPM: `127.0.0.1:9000`
+  - Nginx: `http://localhost`
+
+**`stop-all.bat`** - 停止所有服務
+- **功能**：同時停止 PHP-FPM 和 Nginx 服務
+- **使用方式**：雙擊執行或在命令列中執行 `stop-all.bat`
+- **說明**：
+  - 會強制終止所有 `php-cgi.exe` 和 `nginx.exe` 程序
+  - 如果服務未執行，會顯示相應訊息
+
+**`start-nginx.bat`** - 僅啟動 Nginx
+- **功能**：只啟動 Nginx Web Server（不啟動 PHP-FPM）
+- **使用方式**：雙擊執行或在命令列中執行 `start-nginx.bat`
+- **說明**：
+  - 啟動前會測試 Nginx 設定檔語法
+  - 如果語法錯誤，會停止執行並顯示錯誤訊息
+  - 適用於只需要 Nginx 服務的情況
+
+**`stop-nginx.bat`** - 僅停止 Nginx
+- **功能**：只停止 Nginx Web Server（不影響 PHP-FPM）
+- **使用方式**：雙擊執行或在命令列中執行 `stop-nginx.bat`
+- **說明**：
+  - 使用優雅關閉方式（`nginx.exe -s quit`）
+  - 會等待現有連線完成後再關閉
+
+**`reload-nginx.bat`** - 重新載入 Nginx 設定檔
+- **功能**：在不停止服務的情況下重新載入 Nginx 設定檔
+- **使用方式**：雙擊執行或在命令列中執行 `reload-nginx.bat`
+- **說明**：
+  - 修改 Nginx 設定檔後，使用此批次檔套用變更
+  - 會先測試設定檔語法，確認無誤後才重新載入
+  - 不會中斷現有的連線，適合生產環境使用
+
+**`check-status.bat`** - 檢查服務狀態
+- **功能**：檢查 PHP-FPM 和 Nginx 的執行狀態
+- **使用方式**：雙擊執行或在命令列中執行 `check-status.bat`
+- **檢查項目**：
+  - Nginx 程序是否執行中
+  - PHP-FPM 程序是否執行中
+  - 連接埠 80（Nginx）是否在監聽
+  - 連接埠 9000（PHP-FPM）是否在監聽
+- **說明**：
+  - 會顯示每個服務的執行狀態（✓ 執行中 / ✗ 未執行）
+  - 會列出相關連接埠的監聽狀態
+  - 適合用於故障排除和服務狀態確認
 
 #### Nginx 設定說明
 
@@ -140,15 +208,6 @@ stop-all.bat
     ```bash
     php -S localhost:8000 -t public
     ```
-
-## 商品詳細介紹
-
-<img width="960" height="445" alt="購物網站4" src="https://github.com/user-attachments/assets/c48fd442-9590-495d-8d06-6ab001145cd5" />
-
----
-
-## 購物車
-<img width="960" height="450" alt="購物網站7" src="https://github.com/user-attachments/assets/f6a4949e-054f-425f-993b-7f330a49d42d" />
 
 ---
 
