@@ -1,0 +1,509 @@
+/* Product Detail Page Styles */
+.product-detail-container {
+  padding: 20px;
+}
+
+.product-image-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-carousel {
+  width: 100%;
+}
+
+.product-detail-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.product-info-col {
+  padding: 20px;
+}
+
+.product-detail-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.product-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.tags-label {
+  margin: 0 8px 0 0;
+  font-weight: 600;
+  color: #666;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-tag-chip {
+  margin: 0;
+}
+
+.product-price-card {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 16px;
+}
+
+.product-price-text {
+  color: #e53935;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.product-stock-info {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.stock-number {
+  font-weight: 600;
+  color: #4caf50;
+  font-size: 1.2rem;
+}
+
+.product-description {
+  margin-top: 24px;
+}
+
+.description-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.description-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.description-content ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Sticky Cart Bar */
+.sticky-cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  padding: 0;
+  min-height: 160px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.sticky-content-wrapper {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sticky-product-name {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.sticky-product-name h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticky-form {
+  width: 100%;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.sticky-form-row {
+  align-items: flex-end;
+  margin: 0;
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* Support for both Vuetify and Bootstrap row classes */
+.sticky-form-row.row {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+
+.sticky-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.sticky-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  height: 42px;
+  margin: 0;
+}
+
+.sticky-price-input {
+  color: #e53935;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.sticky-amount-input {
+  text-align: center;
+  padding-right: 8px;
+}
+
+/* Style number input spinner for WebKit browsers (Chrome, Safari, Edge) */
+.sticky-amount-input::-webkit-inner-spin-button {
+  opacity: 1;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  right: 4px;
+}
+
+.sticky-amount-input::-webkit-outer-spin-button {
+  opacity: 1;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Firefox number input spinner */
+.sticky-amount-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Ensure spinner buttons are properly sized */
+.sticky-amount-input[type="number"]::-webkit-inner-spin-button,
+.sticky-amount-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: inner-spin-button;
+  appearance: inner-spin-button;
+  opacity: 1;
+  height: 16px;
+  width: 16px;
+}
+
+.sticky-price-col,
+.sticky-amount-col,
+.sticky-button-col {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Support for both Vuetify and Bootstrap col classes */
+.sticky-price-col[class*="col-"],
+.sticky-amount-col[class*="col-"],
+.sticky-button-col[class*="col-"] {
+  flex: 1;
+  max-width: none;
+  padding: 0;
+}
+
+.sticky-button-col {
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.sticky-add-cart-btn {
+  width: 100% !important;
+  height: 42px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  min-height: 42px;
+  max-height: 42px;
+  box-sizing: border-box;
+}
+
+/* Override Vuetify button margins */
+.sticky-button-col .v-btn,
+.sticky-button-col button {
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* RWD for Product Detail */
+@media screen and (max-width: 960px) {
+  .product-detail-container {
+    padding: 15px;
+  }
+  
+  .product-info-col {
+    padding: 15px;
+  }
+  
+  .product-detail-name {
+    font-size: 1.75rem;
+  }
+  
+  .product-price-text {
+    font-size: 2rem;
+  }
+  
+  .product-detail-image {
+    max-height: 400px;
+  }
+  
+  .sticky-cart-bar {
+    min-height: 170px;
+  }
+  
+  .sticky-content-wrapper {
+    padding: 16px 15px;
+    gap: 14px;
+  }
+  
+  .sticky-product-name h4 {
+    font-size: 1rem;
+  }
+  
+  .sticky-form-row {
+    align-items: flex-end;
+  }
+  
+  .sticky-form-row {
+    gap: 10px;
+  }
+  
+  .sticky-price-col,
+  .sticky-amount-col,
+  .sticky-button-col {
+    padding: 0;
+  }
+  
+  .sticky-input,
+  .sticky-add-cart-btn {
+    height: 40px;
+    font-size: 1rem;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .sticky-button-col .v-btn,
+  .sticky-button-col button {
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .sticky-price-input {
+    font-size: 1rem;
+  }
+  
+  .sticky-amount-input::-webkit-inner-spin-button,
+  .sticky-amount-input::-webkit-outer-spin-button {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .product-detail-container {
+    padding: 10px;
+  }
+  
+  .product-info-col {
+    padding: 10px;
+  }
+  
+  .product-detail-name {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  
+  .product-tags {
+    margin-bottom: 16px;
+  }
+  
+  .tags-label {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .product-price-text {
+    font-size: 1.75rem;
+  }
+  
+  .product-stock-info {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .stock-number {
+    font-size: 1.1rem;
+  }
+  
+  .description-title {
+    font-size: 1.1rem;
+  }
+  
+  .product-detail-image {
+    max-height: 300px;
+  }
+  
+  .sticky-cart-bar {
+    min-height: 200px;
+  }
+  
+  .sticky-content-wrapper {
+    padding: 16px 12px;
+    gap: 12px;
+  }
+  
+  .sticky-product-name {
+    margin: 0;
+  }
+  
+  .sticky-product-name h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+  
+  .sticky-form-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .sticky-form-row {
+    gap: 12px;
+  }
+  
+  .sticky-price-col,
+  .sticky-amount-col,
+  .sticky-button-col {
+    padding: 0;
+    margin-bottom: 0;
+  }
+  
+  .sticky-label {
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
+  
+  .sticky-input {
+    height: 44px;
+    font-size: 0.95rem;
+    padding: 10px;
+    min-height: 44px;
+    max-height: 44px;
+  }
+  
+  .sticky-price-input {
+    font-size: 1rem;
+  }
+  
+  .sticky-add-cart-btn {
+    height: 44px;
+    font-size: 1rem;
+    min-height: 44px;
+    max-height: 44px;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .sticky-button-col .v-btn,
+  .sticky-button-col button {
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .sticky-amount-input::-webkit-inner-spin-button,
+  .sticky-amount-input::-webkit-outer-spin-button {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+/* Add bottom padding to main content when sticky bar is present */
+body:has(#sticky) #main {
+  padding-bottom: 180px;
+}
+
+@media screen and (max-width: 960px) {
+  body:has(#sticky) #main {
+    padding-bottom: 190px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body:has(#sticky) #main {
+    padding-bottom: 220px;
+  }
+}
+
+/* Ensure footer doesn't overlap sticky bar */
+#footer {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+#bottom {
+  position: relative;
+  z-index: 1;
+}
+

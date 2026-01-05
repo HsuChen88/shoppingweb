@@ -1,0 +1,34 @@
+$maincolor: #1b3668;
+$subcolor: #5e99c3;
+$fontcolor1: #8f9da7;
+$fontcolor2: white;
+$backgroundcolor: white;
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#main {
+  width: 70vw;
+  min-width: 600px;
+  min-height: 90%;
+  margin: auto;
+  margin-top: 60px;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #502d2c;
+    margin: 0;
+    background-color: $backgroundcolor;
+  }
+
+.layout-input{
+  border:2px $fontcolor1 groove;
+  border-radius: 3px;
+}
+

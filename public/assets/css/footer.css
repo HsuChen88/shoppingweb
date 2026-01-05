@@ -1,0 +1,29 @@
+#footer {
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+  background-color: #f7f7f7;
+  background-position: top left, top left;
+  background-repeat: repeat-x, repeat;
+  padding: 60px;
+  margin: auto;
+  margin-top: 0px;
+  z-index: 100;
+}
+
+#bottom {
+  background-color: #1b3668;
+  color: #8f9da7;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  font-size: xx-small;
+}
+
+.information {
+  margin-left: 30px;
+  margin-right: 30px;
+  display: inline-flex;
+}
+
+/*# sourceMappingURL=footer.css.map */
