@@ -1,5 +1,5 @@
 # ShawningShop 鍵盤世界
-![購物網站全圖](https://github.com/user-attachments/assets/f60f73e8-ace6-4339-b67f-b7c2522f72c0)
+<img width="1405" height="1929" alt="購物網站主頁" src="https://github.com/user-attachments/assets/b3ca03e7-dae6-4661-a7dd-d9946589704d" />
 
 ---
 
